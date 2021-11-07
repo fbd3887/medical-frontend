@@ -30,9 +30,9 @@ export default function Login(){
                                 <input type="password"/>
                             </div>
                         </div>
-                        <button className="btn">
+                        <Link to="/accountinformation"><button className="btn">
                             Login
-                        </button>
+                        </button></Link>
                     </div>
                     
                 </div>
