@@ -1,6 +1,6 @@
 import React from "react";
 import './outheader.scss';
-import Huayu from "../../images/huayu logo.png"
+import Huayu from "../../images/huayulogo.png"
 
 const Outerheader=()=>{
     return(
