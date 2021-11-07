@@ -1,0 +1,76 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.desktopHide{
+    display: none;
+}
+.mobileHide{
+    display: block;
+}
+.sidebar{
+    background: #e6917d;
+    height:100vh;
+    position: relative;
+    .leftmenulogo{
+        margin: 10% 0 25%;
+    }
+    .leftmenuitem{
+        padding: 8% 10%;
+        a{
+            text-decoration: none;
+        }
+        p{
+            margin: 0;
+            color: #fff;
+        }
+    }
+    .logoutdiv{
+        position:absolute;;
+        bottom: 0;
+        padding: 8% 10%;
+        p{
+            margin: 0;
+            color: #fff;
+        }
+    }
+}
+.innerpageright{
+    padding-top:4%;
+    background-color: #fffaf8;
+    .formOptionCard{
+        background: #fff;
+        border-radius: 10px;
+        color: #5C5C5C;
+        box-shadow: 0 0 10px #8E8E8E;
+        .colorpill{
+            background: #f9f2ef;
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+        .leftlabel{
+            width: 30%;
+            float: left;
+        }
+        .rightdata{
+            width: 65%;
+            float: left;
+        }
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .desktopHide{
+        display: block;
+    }
+    .mobileHide{
+        display: none;
+    }
+    .sidebar{
+        height: auto !important;
+        .mobilemenudiv{
+            float: right;
+        }
+    }
+}
