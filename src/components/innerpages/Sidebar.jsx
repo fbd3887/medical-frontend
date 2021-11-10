@@ -19,7 +19,7 @@ export default function Sidebar(){
                     <img src={Lightlogo} alt="" />
                 </div>
                 <div className="col-md-12 leftmenuitem">
-                    <p><img src={AnalyticsIcon} alt="" /> Analytics</p>
+                <Link to="/analytics"><p><img src={AnalyticsIcon} alt="" /> Analytics</p></Link>
                 </div>
                 <div className="col-md-12 leftmenuitem">
                     <p><img src={AidoctorIcon} alt="" /> AI Doctor Diagnostics</p>
@@ -34,7 +34,7 @@ export default function Sidebar(){
                     <p><img src={SpecialIcon} alt="" /> Special Discount</p>
                 </div>
                 <div className="col-md-12 logoutdiv">
-                    <p><img src={LogoutIcon} alt="" /> Logout</p>
+                    <Link to="/"><p><img src={LogoutIcon} alt="" /> Logout</p></Link>
                 </div>
             </div>
             <div className="row desktopHide align-items-center">

@@ -1,5 +1,5 @@
 import React from "react";
-import './login.scss';
+import '../../scss/outerpage.scss';
 import logo2 from '../../images/logo2.png';
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ export default function Login(){
                                 <input type="password"/>
                             </div>
                         </div>
-                        <Link to="/accountinformation"><button className="btn">
+                        <Link to="/analytics"><button className="btn">
                             Login
                         </button></Link>
                     </div>

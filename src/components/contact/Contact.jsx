@@ -1,6 +1,6 @@
 import React from "react";
 import Outerheader from "../outerheader/OuterHeader";
-import './contact.scss'
+import '../../scss/outerpage.scss';
 export default function Contact(){
     return(
         <div className="outerPage">
