@@ -1,13 +1,13 @@
 import React from "react";
 import Outerheader from "../outerheader/OuterHeader";
-import './register.scss'
+import '../../scss/outerpage.scss';
 export default function Register(){
     return(
         <div className="outerPage">
             <Outerheader />
             <h1 className="text-center">Register</h1>
             <div className="row">
-                <div class="col-md-4 offset-md-4">
+                <div class="col-md-4 offset-md-4 paddingLeft25">
                     <div className="treeOptionTab">
                         <div className="treeOptionTabHeding">
                             Biological Age
@@ -127,11 +127,7 @@ export default function Register(){
                                 </div>
                             </div>
                         </div>
-                        
-                       
                     </div>
-                  
-                   
                 </div>
             </div>
         </div>

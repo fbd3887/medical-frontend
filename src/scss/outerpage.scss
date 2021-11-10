@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.outerheaderBtn{
+    border: 1px solid #E8927C;
+    border-radius: 50px;
+    color: #E8927C;
+    float: right;
+}
+.desktopOuterHide{
+    display: none;
+}
+.mobileOuterHide{
+    display: inline-block;
+}
+
+.outerPage{
+    background-color: #FFFAF8;
+    padding: 30px 80px;
+    .treeOptionTab{
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        width: 30%;
+        text-align: center;
+        color: #5C5C5C;
+        box-shadow: 0 0 10px #8E8E8E;
+        float: left;
+        margin: 5% 1%;
+        .treeOptionTabHeding{
+            padding: 10px;;
+            border-radius: 20px;
+            background:#F9F2EF;
+            margin-bottom: 20px;
+        }
+    }
+    .formOptionCard{
+        background: #fff;
+        border-radius: 10px;
+        padding: 5% 10%;
+        color: #5C5C5C;
+        box-shadow: 0 0 10px #8E8E8E;
+        h3{
+            margin-bottom: 5%;
+        }
+        .innerFieldDiv{
+            margin-bottom: 15px;;
+        }
+    }
+    .formOptionCard,.ContctOptionCard{
+        margin: 5% 0;
+    }
+    .contactbtn{
+        border: 1px solid #E8927C;
+        border-radius: 50px;
+        color: #E8927C;
+        margin: 0 auto;
+    }
+    .ContctOptionCard{
+        background: #fff;
+        border-radius: 10px;
+        color: #5C5C5C;
+        box-shadow: 0 0 10px #8E8E8E;
+    }
+}
+
+
+.loginBackground{
+    background-image: url(../images/loginbg.png) ;
+    background-size: cover;
+    .leftlogin{
+        padding: 2%;
+        h1,h3{
+            color: #fff;
+        }
+    }
+    .loginFormDiv{
+        width: 50%;
+        margin: 0 auto;
+        .loginHeading{
+            text-align: left;
+            margin: 5% 0 8%;
+            h1{
+                border-left: 8px solid #E6917D;
+                color:#5C5C5C;
+                padding-left: 5%;
+            }
+        }
+        .loginFeild{
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 10px;
+            text-align: left;
+            .innerFieldDiv{
+                border-left: 6px solid #D3755F;
+                padding-left: 5%;
+                label{
+                    width: 90%;
+                    .forgetLogin{
+                        float: right;
+                        color: #707070;
+                    }
+                }
+               
+                input{
+                    width: 100%;
+                    border: none;
+                }
+            }
+        }
+        button{
+            background-color: #E6917D;
+            border: none;
+            padding: 15px 10%;
+            float: right;
+        }
+    }
+    
+   
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .desktopOuterHide{
+        display: inline-block;
+    }
+    .mobileOuterHide{
+        display: none;
+    }
+    .mobilepadding{
+        padding: 10px;
+    }
+    .paddingLeft25{
+        padding-left: 25px;
+    }
+    .outerPage{
+        padding: 10px 0;
+    }
+
+}
