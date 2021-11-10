@@ -12,8 +12,15 @@
             color: #fff;
         }
     }
+    @media screen and (max-width: 768px){
+        background-image: none;
+        margin-bottom: 30px;
+        .leftlogin{
+            background: #d3755f;
+
+        } 
+    }
     .loginFormDiv{
-        width: 50%;
         margin: 0 auto;
         .loginHeading{
             text-align: left;
