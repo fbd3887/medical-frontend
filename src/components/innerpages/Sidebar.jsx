@@ -14,28 +14,31 @@ import '../../scss/innerpages.scss';
 export default function Sidebar(){
     return(
         <div className="col-md-2 sidebar  ">
-            <div className="row mobileHide">
-                <div className="col-md-12 leftmenulogo text-center">
-                    <img src={Lightlogo} alt="" />
+            <div className="row mobileHide desktopst">
+                <div className="desktoprel">
+                    <div className="col-md-12 leftmenulogo text-center">
+                        <img src={Lightlogo} alt="" />
+                    </div>
+                    <div className="col-md-12 leftmenuitem">
+                    <Link to="/analytics"><p><img src={AnalyticsIcon} alt="" /> Analytics</p></Link>
+                    </div>
+                    <div className="col-md-12 leftmenuitem">
+                        <p><img src={AidoctorIcon} alt="" /> AI Doctor Diagnostics</p>
+                    </div>
+                    <div className="col-md-12 leftmenuitem">
+                        <Link to="/accountinformation"><p><img src={AccountInfoIcon} alt="" /> Account Information</p></Link>
+                    </div>
+                    <div className="col-md-12 leftmenuitem">
+                        <Link to="/education"><p><img src={AboutIcon} alt="" /> About AMH</p></Link>
+                    </div>
+                    <div className="col-md-12 leftmenuitem">
+                        <p><img src={SpecialIcon} alt="" /> Special Discount</p>
+                    </div>
+                    <div className="col-md-12 logoutdiv">
+                        <Link to="/"><p><img src={LogoutIcon} alt="" /> Logout</p></Link>
+                    </div>
                 </div>
-                <div className="col-md-12 leftmenuitem">
-                <Link to="/analytics"><p><img src={AnalyticsIcon} alt="" /> Analytics</p></Link>
-                </div>
-                <div className="col-md-12 leftmenuitem">
-                    <p><img src={AidoctorIcon} alt="" /> AI Doctor Diagnostics</p>
-                </div>
-                <div className="col-md-12 leftmenuitem">
-                    <Link to="/accountinformation"><p><img src={AccountInfoIcon} alt="" /> Account Information</p></Link>
-                </div>
-                <div className="col-md-12 leftmenuitem">
-                    <Link to="/education"><p><img src={AboutIcon} alt="" /> About AMH</p></Link>
-                </div>
-                <div className="col-md-12 leftmenuitem">
-                    <p><img src={SpecialIcon} alt="" /> Special Discount</p>
-                </div>
-                <div className="col-md-12 logoutdiv">
-                    <Link to="/"><p><img src={LogoutIcon} alt="" /> Logout</p></Link>
-                </div>
+                
             </div>
             <div className="row desktopHide align-items-center">
                 <div className="col-md-12 p-3">
