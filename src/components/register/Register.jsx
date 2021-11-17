@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
-import {register} from '../../api/axios'
+import { register } from '../../api/axios'
 export default function Register() {
   const [name, setName] = useState('')
   const [dobDay, setDobDay] = useState('')
@@ -10,6 +10,7 @@ export default function Register() {
   const [idNumber, setIdNumber] = useState('')
   const [occupation, setOccupation] = useState('')
   const [education, setEducation] = useState('')
+  const [otherOccupation, setOtherOccupation] = useState(false)
 
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -19,12 +20,12 @@ export default function Register() {
   const handleRegister = () => {
     setIsLoading(true)
     register({
-      "email_id":email,
-      "password":password,
-      "phone_num":phoneNumber
-    },setIsLoading)
+      "email_id": email,
+      "password": password,
+      "phone_num": phoneNumber
+    }, setIsLoading)
   }
-  
+
   return (
     <div className='outerPage'>
       <Outerheader />
@@ -54,13 +55,13 @@ export default function Register() {
 
                 {/* Email  */}
                 <div className='row'>
-                  <label>Email</label>
+                  <label>Name</label>
                   <br />
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
                       type='text'
-                      value={email}
+                      value='name'
                       onChange={(e) => {
                         setEmail(e.target.value)
                       }}
@@ -70,46 +71,7 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Password */}
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <label>Password</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='password'
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value)
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Phone */}
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <label>Phone Number</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='text'
-                      value={phoneNumber}
-                      onChange={(e) => {
-                        setPhoneNumber(e.target.value)
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            {/* Date of Birth */}
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
@@ -160,6 +122,8 @@ export default function Register() {
                 </div>
               </div>
             </div>
+
+            {/* Id Number */}
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
@@ -178,6 +142,7 @@ export default function Register() {
                 </div>
               </div>
             </div>
+
             <div className='row'>
               <div className='col-md-4'>
                 <div className='row'>
@@ -204,48 +169,202 @@ export default function Register() {
                 </div>
               </div>
             </div>
+
+            {/* Occupation */}
             <div className='row'>
-              <div className='col-md-4'>
+              <div className='col-md-8'>
                 <div className='row'>
-                  <label>職業</label>
+                  <label>生日</label>
                   <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='text'
-                      value={occupation}
+                  <div className='col-md-6 innerFieldDiv'>
+                    <select
+                      className='form-select'
+                      aria-label='Default select example'
                       onChange={(e) => {
-                        setOccupation(e.target.value)
+                        e.target.value === '3' && setOtherOccupation(true)
                       }}
-                    />
+                    >
+                      <option selected>-Please Select</option>
+                      <option value='1'>Govt Servant</option>
+                      <option value='2'>Business Man</option>
+                      <option value='3'>Other</option>
+                    </select>
+                  </div>
+                  {otherOccupation && (<div className='col-md-6'>
+                    <div className='row'>
+                      <div className='col-md-12 innerFieldDiv'>
+                        <input
+                          className='form-control'
+                          type='text'
+                          placeholder='Plese spacify'
+                        />
+                      </div>
+                    </div>
+                  </div>)}
+                </div>
+              </div>
+            </div>
+
+            {/* Education */}
+            <div className='row'>
+              <div className='col-md-8'>
+                <div className='row'>
+                  <label>生日</label>
+                  <br />
+                  <div className='col-md-6 innerFieldDiv'>
+                    <select
+                      className='form-select'
+                      aria-label='Default select example'
+                    // onChange={(e) => {
+                    //   e.target.value === 'DD' ? setDobDay('') : setDobDay(e.target.value)
+                    // }}
+                    >
+                      <option selected>-Please Select</option>
+                      <option value='1'>Business</option>
+                      <option value='2'>Techonology</option>
+                      <option value='3'>Arts</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Obstetric History */}
+          <div className='formOptionCard'>
+            <h3>Obstetric History</h3>
+            <div className='row'>
+              <div className='col-md-8'>
+                <div className='row'>
+                  <h4>Menstrual cycle</h4>
+                  <br />
+                  <div className='d-flex justify-content-between innerFieldDiv'>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">20 Days</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">30 Days</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label" >other</label>
+                      <input className="otherDayinput" type="text" />
+                      <label className="form-check-label" >Days</label>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
             <div className='row'>
-              <div className='col-md-4'>
+              <div className='col-md-8'>
                 <div className='row'>
-                  <label>學歷</label>
+                  <h4>Have you been pregnant before</h4>
                   <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='text'
-                      value={education}
-                      onChange={(e) => {
-                        setEducation(e.target.value)
-                      }}
-                    />
+                  <div className='d-flex justify-content-between innerFieldDiv'>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">never pregnant and don not want to pregnant</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Never pregnant but want to get pregnant</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label" >Pregnant</label>
+                      <input className="otherDayinput" type="text" />
+                      <label className="form-check-label" >time(s)</label>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
             <div className='row'>
-              <div className='col-md-4 loginBackground'>
-                <button onClick={handleRegister} className='btn'>
-                  {isloading ? "Loading...":"Register" }
-                </button>
+              <div className='col-md-8'>
+                <div className='row'>
+                  <h4>Do you experience cramps or pain during your period</h4>
+                  <br />
+                  <div className='d-flex justify-content-between innerFieldDiv'>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Yes, experience pain</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">No, do not experience pain</label>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div className='row'>
+              <div className='col-md-8'>
+                <div className='row'>
+                  <h4>How much do you bleed</h4>
+                  <br />
+                  <div className='d-flex justify-content-between innerFieldDiv'>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Heavy bleeding</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">normal bleeding</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Light bleeding</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='row'>
+              <div className='col-md-8'>
+                <div className='row'>
+                  <h4>Current lifestyle(Select alll application</h4>
+                  <br />
+                  <div className='d-flex justify-content-between flex-wrap innerFieldDiv'>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Smooking</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Alcohol consuption</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Frequently stayings Up</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Feeling stressed </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">Feeling unstressed </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" />
+                      <label className="form-check-label">None of the above</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div className='row'>
+            <div className='col-md-4 loginBackground'>
+              <button onClick={handleRegister} className='btn'>
+                {isloading ? "Loading..." : "Register"}
+              </button>
             </div>
           </div>
         </div>

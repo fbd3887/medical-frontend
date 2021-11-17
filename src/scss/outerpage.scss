@@ -15,6 +15,21 @@
     display: inline-block;
 }
 
+.form-select {
+    font-size: 12px;
+}
+
+.otherDayinput {
+    width: 75px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.formOptionCard .form-check-input:checked {
+    background-color: #d3755f;
+    border-color: #d3755f;
+}
+
 .outerPage{
     background-color: #FFFAF8;
     padding: 30px 80px;
