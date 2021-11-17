@@ -230,14 +230,13 @@ export default function Register() {
             </div>
           </div>
 
-
           {/* Obstetric History */}
           <div className='formOptionCard'>
             <h3>Obstetric History</h3>
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>Menstrual cycle</label>
+                  <h4>Menstrual cycle</h4>
                   <br />
                   <div className='d-flex justify-content-between innerFieldDiv'>
                     <div className="form-check form-check-inline">
@@ -262,7 +261,7 @@ export default function Register() {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>Have you been pregnant before</label>
+                  <h4>Have you been pregnant before</h4>
                   <br />
                   <div className='d-flex justify-content-between innerFieldDiv'>
                     <div className="form-check form-check-inline">
@@ -287,7 +286,7 @@ export default function Register() {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>Do you experience cramps or pain during your period</label>
+                  <h4>Do you experience cramps or pain during your period</h4>
                   <br />
                   <div className='d-flex justify-content-between innerFieldDiv'>
                     <div className="form-check form-check-inline">
@@ -305,7 +304,7 @@ export default function Register() {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>How much do you bleed</label>
+                  <h4>How much do you bleed</h4>
                   <br />
                   <div className='d-flex justify-content-between innerFieldDiv'>
                     <div className="form-check form-check-inline">
@@ -328,7 +327,7 @@ export default function Register() {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>Current lifestyle(Select alll application</label>
+                  <h4>Current lifestyle(Select alll application</h4>
                   <br />
                   <div className='d-flex justify-content-between flex-wrap innerFieldDiv'>
                     <div className="form-check form-check-inline">
@@ -360,15 +359,14 @@ export default function Register() {
               </div>
             </div>
 
-           
           </div>
           <div className='row'>
-              <div className='col-md-4 loginBackground'>
-                <button onClick={handleRegister} className='btn'>
-                  {isloading ? "Loading..." : "Register"}
-                </button>
-              </div>
+            <div className='col-md-4 loginBackground'>
+              <button onClick={handleRegister} className='btn'>
+                {isloading ? "Loading..." : "Register"}
+              </button>
             </div>
+          </div>
         </div>
       </div>
     </div>
