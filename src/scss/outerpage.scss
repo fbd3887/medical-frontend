@@ -21,13 +21,62 @@
 
 .otherDayinput {
     width: 75px;
+    opacity: 1 !important;
     border: none;
+    outline: none;
     border-bottom: 1px solid gray;
 }
 
-.formOptionCard .form-check-input:checked {
-    background-color: #d3755f;
-    border-color: #d3755f;
+.css-prp
+{
+  color: #d3755f;
+  font-family: arial;
+}
+
+.con1,
+.con2,
+.con3,
+.con4,
+.con5 {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.con1 input,
+.con2 input,
+.con3 input,
+.con4 input,
+.con5 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: lightgrey;
+  border-radius: 10%;
+}
+
+.con1 input:checked ~ .checkmark,
+.con2 input:checked ~ .checkmark,
+.con3 input:checked ~ .checkmark,
+.con4 input:checked ~ .checkmark,
+.con5 input:checked ~ .checkmark  {
+  background-color: #d3755f;
 }
 
 .outerPage{
