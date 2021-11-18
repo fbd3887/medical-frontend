@@ -23,4 +23,18 @@ export const register=(userData, setIsLoading)=>{
      setIsLoading(false)
  });
 }
+
+export const login=(userData, setIsLoading)=>{
+  api.post('/login', userData)
+  .then(res=>{
+    console.log(res)
+    setIsLoading(false)
+  })
+  .catch(error=>{
+    if(error.response.message) alert(error.response.message);
+     if(error.response.data.error) alert(error.response.data.error)
+    setIsLoading(false)
+  })
+}
+
 export default api;
