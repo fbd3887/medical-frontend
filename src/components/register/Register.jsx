@@ -55,13 +55,13 @@ export default function Register() {
 
                 {/* Email  */}
                 <div className='row'>
-                  <label>Name</label>
+                  <label>姓名</label>
                   <br />
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
                       type='text'
-                      value='name'
+                      value='姓名'
                       onChange={(e) => {
                         setEmail(e.target.value)
                       }}
@@ -143,10 +143,30 @@ export default function Register() {
               </div>
             </div>
 
+            {/* phone Number */}
+            <div className='row'>
+              <div className='col-md-8'>
+                <div className='row'>
+                  <label>電話</label>
+                  <br />
+                  <div className='col-md-12 innerFieldDiv'>
+                    <input
+                      className='form-control'
+                      type='text'
+                      value={phoneNumber}
+                      onChange={(e) => {
+                        setIdNumber(e.target.value)
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className='row'>
               <div className='col-md-4'>
                 <div className='row'>
-                  <label>電話</label>
+                  <label>Email</label>
                   <br />
                   <div className='col-md-12 innerFieldDiv'>
                     <input
@@ -158,12 +178,12 @@ export default function Register() {
               </div>
               <div className='col-md-4'>
                 <div className='row'>
-                  <label>Email</label>
+                  <label>Password</label>
                   <br />
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
-                      type='email'
+                      type='password'
                     />
                   </div>
                 </div>
@@ -174,14 +194,14 @@ export default function Register() {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>生日</label>
+                  <label>職業</label>
                   <br />
                   <div className='col-md-6 innerFieldDiv'>
                     <select
                       className='form-select'
                       aria-label='Default select example'
                       onChange={(e) => {
-                        e.target.value === '3' && setOtherOccupation(true)
+                        e.target.value === '3' ? setOtherOccupation(true) : setOtherOccupation(false)
                       }}
                     >
                       <option selected>-Please Select</option>
@@ -209,7 +229,7 @@ export default function Register() {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='row'>
-                  <label>生日</label>
+                  <label>學歷</label>
                   <br />
                   <div className='col-md-6 innerFieldDiv'>
                     <select
@@ -234,125 +254,119 @@ export default function Register() {
           <div className='formOptionCard'>
             <h3>Obstetric History</h3>
             <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <h4>Menstrual cycle</h4>
-                  <br />
-                  <div className='d-flex justify-content-between innerFieldDiv'>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">20 Days</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">30 Days</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label" >other</label>
-                      <input className="otherDayinput" type="text" />
-                      <label className="form-check-label" >Days</label>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <h4>Have you been pregnant before</h4>
-                  <br />
-                  <div className='d-flex justify-content-between innerFieldDiv'>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">never pregnant and don not want to pregnant</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Never pregnant but want to get pregnant</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label" >Pregnant</label>
-                      <input className="otherDayinput" type="text" />
-                      <label className="form-check-label" >time(s)</label>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <h4>Do you experience cramps or pain during your period</h4>
-                  <br />
-                  <div className='d-flex justify-content-between innerFieldDiv'>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Yes, experience pain</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">No, do not experience pain</label>
+              <div className='row'>
+                <div className='col-md-8'>
+                  <div className='row'>
+                    <h5>Menstrual cycle</h5>
+                    <div className="d-flex">
+                      <label class="con1"><span>20 Days</span>
+                        <input type="radio" name="radio1" checked />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con1"><span>30 Days</span>
+                        <input type="radio" name="radio1" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con1"><span> other</span>
+                        <input type="radio" name="radio1" />
+                        <span class="checkmark"></span>
+                        <input className="otherDayinput" type="text" />
+                        <label className="form-check-label" >Days</label>
+                      </label>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <h4>How much do you bleed</h4>
-                  <br />
-                  <div className='d-flex justify-content-between innerFieldDiv'>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Heavy bleeding</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">normal bleeding</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Light bleeding</label>
+              <div className='row'>
+                <div className='col-md-8'>
+                  <div className='row'>
+                    <h5>Have you been pregnant before</h5>
+                    <div className="d-flex flex-wrap">
+                      <label class="con2"><span>never pregnant and don not want to pregnant</span>
+                        <input type="radio" name="radio2" checked />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con2"><span> Never pregnant but want to get pregnant</span>
+                        <input type="radio" name="radio2" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con2"><span> pregnant</span>
+                        <input type="radio" name="radio2" />
+                        <span class="checkmark"></span>
+                        <input className="otherDayinput" type="text" />
+                        <label className="form-check-label" >time(s)</label>
+                      </label>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <h4>Current lifestyle(Select alll application</h4>
-                  <br />
-                  <div className='d-flex justify-content-between flex-wrap innerFieldDiv'>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Smooking</label>
+              <div className='row'>
+                <div className='col-md-8'>
+                  <div className='row'>
+                    <h5>Do you experience cramps or pain during your period</h5>
+                    <div className="d-flex flex-wrap">
+                      <label class="con3"><span>Yes, experience pain</span>
+                        <input type="radio" name="radio3" checked />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con3"><span>No, do not experience pain</span>
+                        <input type="radio" name="radio3" />
+                        <span class="checkmark"></span>
+                      </label>
                     </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Alcohol consuption</label>
+                  </div>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col-md-8'>
+                  <div className='row'>
+                    <h5>How much do you bleed</h5>
+                    <div className="d-flex flex-wrap">
+                      <label class="con4"><span>Heavy bleeding</span>
+                        <input type="radio" name="radio4" checked />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con4"><span>normal bleeding</span>
+                        <input type="radio" name="radio4" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con4"><span>Light bleeding</span>
+                        <input type="radio" name="radio4" />
+                        <span class="checkmark"></span>
+                      </label>
                     </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Frequently stayings Up</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Feeling stressed </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">Feeling unstressed </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input className="form-check-input" type="checkbox" />
-                      <label className="form-check-label">None of the above</label>
+                  </div>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col-md-8'>
+                  <div className='row'>
+                    <h5>Current lifestyle(Select alll application)</h5>
+                    <div className="d-flex flex-wrap">
+                      <label class="con5"><span>Smooking</span>
+                        <input type="radio" name="radio5" checked />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con5"><span>Alcohol consumption</span>
+                        <input type="radio" name="radio5" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con5"><span>Frequently stayings Up</span>
+                        <input type="radio" name="radio5" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con5"><span>Feeling stressed</span>
+                        <input type="radio" name="radio5" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con5"><span>Feeling unstressed</span>
+                        <input type="radio" name="radio5" />
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="con5"><span>None of the above</span>
+                        <input type="radio" name="radio5" />
+                        <span class="checkmark"></span>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -369,6 +383,6 @@ export default function Register() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
