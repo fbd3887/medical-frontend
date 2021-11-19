@@ -9,6 +9,7 @@ const api = axios.create({
 
 
 export const register=(userData, setIsLoading)=>{
+  console.log(userData)
 
  api.post('/register', userData)
  .then(res => {
@@ -18,6 +19,7 @@ export const register=(userData, setIsLoading)=>{
    setIsLoading(false)
  })
  .catch(error => {
+   console.log(error.response)
      if(error.response.message) alert(error.response.message);
      if(error.response.data.error) alert(error.response.data.error)
      setIsLoading(false)
@@ -27,8 +29,10 @@ export const register=(userData, setIsLoading)=>{
 export const login=(userData, setIsLoading)=>{
   api.post('/login', userData)
   .then(res=>{
-    console.log(res)
-    setIsLoading(false)
+    window.localStorage.setItem('user-token',res.data.token)
+    console.log(res.data.token)
+    setIsLoading(false);
+    window.location.replace('/analytics')
   })
   .catch(error=>{
     if(error.response.message) alert(error.response.message);
