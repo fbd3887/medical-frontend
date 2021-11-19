@@ -9,8 +9,6 @@ const api = axios.create({
 
 
 export const register=(userData, setIsLoading)=>{
-  console.log(userData)
-
  api.post('/register', userData)
  .then(res => {
    if(res.status === 200){
