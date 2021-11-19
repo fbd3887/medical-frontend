@@ -19,7 +19,6 @@ export const register=(userData, setIsLoading)=>{
    setIsLoading(false)
  })
  .catch(error => {
-   console.log(error.response)
      if(error.response.message) alert(error.response.message);
      if(error.response.data.error) alert(error.response.data.error)
      setIsLoading(false)
@@ -30,7 +29,6 @@ export const login=(userData, setIsLoading)=>{
   api.post('/login', userData)
   .then(res=>{
     window.localStorage.setItem('user-token',res.data.token)
-    console.log(res.data.token)
     setIsLoading(false);
     window.location.replace('/analytics')
   })
