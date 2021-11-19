@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import '../../scss/innerpages.scss'
 import Sidebar from './Sidebar'
@@ -7,6 +7,15 @@ import Graph2 from '../../images/graph2.png'
 import Graph3 from '../../images/graph3.png'
 
 export default function Analytics() {
+
+useEffect(() => {
+  if(window.localStorage.getItem('user-token')){
+
+  }else{
+    window.location.replace('/')
+  }
+}, [])
+
   return (
     <div className="container-fluid">
       <div className="row">

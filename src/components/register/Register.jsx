@@ -2,28 +2,105 @@ import React, { useState } from 'react'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
 import { register } from '../../api/axios'
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 export default function Register() {
-  const [name, setName] = useState('')
-  const [dobDay, setDobDay] = useState('')
-  const [dobMonth, setDobMonth] = useState('')
-  const [dobYear, setDobYear] = useState('')
-  const [idNumber, setIdNumber] = useState('')
-  const [occupation, setOccupation] = useState('')
-  const [education, setEducation] = useState('')
-  const [otherOccupation, setOtherOccupation] = useState(false)
+  const [email, setEmail] = useState('test1@gmail.com')
+  const [password, setPassword] = useState('12345678')
+  const [phoneNumber, setPhoneNumber] = useState('12345678910')
+  const [occupation, setOccupation] = useState('Government Service')
+  const [finance, setFinance] = useState('100000')
+  const [dobDay, setDobDay] = useState('2')
+  const [dobMonth, setDobMonth] = useState('3')
+  const [dobYear, setDobYear] = useState('1994')
+  const [education, setEducation] = useState('Techonology')
 
-  const [email, setEmail] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState('Mubeen')
+  const [idNumber, setIdNumber] = useState(12345)
+
+  const [menstrualCycle, setMenstrualCycle] = useState(20)
+  const [bleedCycle, setBleedCycle] = useState(0)
+  const [biologicalAge, setBiologicalAge] = useState('10')
+  const [overyAge, setOveryAge] = useState('10')
+  const [amhLevel, setAmhLevel] = useState('1.6')
+  const [crampCycle, setCrampCycle] = useState(0)
+  const [lifeCycle, setLifeCycle] = useState(0)
+  const [pregCycle, setPregCycle] = useState(0)
+
+  const [otherOccupation, setOtherOccupation] = useState('')
+
   const [isloading, setIsLoading] = useState(false)
 
   const handleRegister = () => {
     setIsLoading(true)
-    register({
-      "email_id": email,
-      "password": password,
-      "phone_num": phoneNumber
-    }, setIsLoading)
+    register(
+      {
+        "email_id": email,
+        "password": password,
+        "phone_num": phoneNumber,
+        "occupation": occupation,
+        "dob": `${dobYear}-${dobMonth}-${dobDay}`,
+        "education": education,
+        'id_number':idNumber,
+        "menstrual_cycle": menstrualCycle,
+        "bleed_cycle": bleedCycle,
+        "cramp_cycle": crampCycle,
+        "life_cycle": lifeCycle,
+        "preg_cycle": pregCycle,
+        "biological_age": biologicalAge,
+        "overy_age": overyAge,
+        "amh_level": amhLevel,
+        "finance": finance        
+      },
+      setIsLoading
+    )
+  }
+
+  const renderYears = () => {
+    let currentYear = new Date().getFullYear()
+    let years = '<option selected >YYYY</option>'
+    for (let i = currentYear; i >= 1900; i--) {
+      years += `<option value=${i} >${i}</option>`
+    }
+    return years
+  }
+
+  const renderMonths = () => {
+    let months = '<option selected >MM</option>'
+    for (let i = 0; i < monthNames.length; i++) {
+      months += `<option value=${i + 1} >${monthNames[i]}</option>`
+    }
+    return months
+  }
+
+  const renderDays = () => {
+    let days = '<option selected >DD</option>'
+    for (let i = 1; i <= 31; i++) {
+      days += `<option value=${i} >${i}</option>`
+    }
+    return days
+  }
+
+  const handleSetOccupation = (value) => {
+    if (value !== 'other') {
+      setOccupation(value)
+      setOtherOccupation(false)
+    } else {
+      setOtherOccupation(true)
+      setOccupation('')
+    }
   }
 
   return (
@@ -31,18 +108,41 @@ export default function Register() {
       <Outerheader />
       <h1 className='text-center'>Register 註冊</h1>
       <div className='row'>
-        <div className='col-md-4 offset-md-4 paddingLeft25'>
+        <div className='col-md-8 offset-md-2 paddingLeft25'>
           <div className='treeOptionTab'>
             <div className='treeOptionTabHeding'>實際年齡</div>
-            <div className='treeOptionTabOption'>32 歲</div>
+            <div className='treeOptionTabOption'>
+              <input
+              className='form-control'
+                type='text'
+                value={biologicalAge}
+                onChange={(e) => setBiologicalAge(e.target.value)}
+              />
+              歲
+            </div>
           </div>
           <div className='treeOptionTab'>
             <div className='treeOptionTabHeding'>卵巢年齡</div>
-            <div className='treeOptionTabOption'>35 歲</div>
+            <div className='treeOptionTabOption'>
+              <input
+                type='text'
+                className='form-control'
+                value={overyAge}
+                onChange={(e) => setOveryAge(e.target.value)}
+              />
+              歲
+            </div>
           </div>
           <div className='treeOptionTab'>
             <div className='treeOptionTabHeding'>AMH 值</div>
-            <div className='treeOptionTabOption'>3.10</div>
+            <div className='treeOptionTabOption'>
+              <input
+                type='text'
+                className='form-control'
+                value={amhLevel}
+                onChange={(e) => setAmhLevel(e.target.value)}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -52,18 +152,18 @@ export default function Register() {
             <h3>基本資料</h3>
             <div className='row'>
               <div className='col-md-8'>
-
-                {/* Email  */}
+                {/* Name  */}
                 <div className='row'>
                   <label>姓名</label>
                   <br />
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
+                      placeholder='Name'
                       type='text'
-                      value='姓名'
+                      value={name}
                       onChange={(e) => {
-                        setEmail(e.target.value)
+                        setName(e.target.value)
                       }}
                     />
                   </div>
@@ -82,42 +182,36 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       onChange={(e) => {
-                        e.target.value === 'YYYY' ? setDobYear('') : setDobYear(e.target.value)
+                        e.target.value === 'YYYY'
+                          ? setDobYear('')
+                          : setDobYear(e.target.value)
                       }}
-                    >
-                      <option selected >YYYY</option>
-                      <option value='1'>One</option>
-                      <option value='2'>Two</option>
-                      <option value='3'>Three</option>
-                    </select>
+                      dangerouslySetInnerHTML={{ __html: renderYears() }}
+                    ></select>
                   </div>
                   <div className='col-md-4 innerFieldDiv'>
                     <select
                       className='form-select'
                       aria-label='Default select example'
                       onChange={(e) => {
-                        e.target.value === 'MM' ? setDobMonth('') : setDobMonth(e.target.value)
+                        e.target.value === 'MM'
+                          ? setDobMonth('')
+                          : setDobMonth(e.target.value)
                       }}
-                    >
-                      <option selected>MM</option>
-                      <option value='1'>One</option>
-                      <option value='2'>Two</option>
-                      <option value='3'>Three</option>
-                    </select>
+                      dangerouslySetInnerHTML={{ __html: renderMonths() }}
+                    ></select>
                   </div>
                   <div className='col-md-4 innerFieldDiv'>
                     <select
                       className='form-select'
                       aria-label='Default select example'
                       onChange={(e) => {
-                        e.target.value === 'DD' ? setDobDay('') : setDobDay(e.target.value)
+                        e.target.value === 'DD'
+                          ? setDobDay('')
+                          : setDobDay(e.target.value)
                       }}
-                    >
-                      <option selected>DD</option>
-                      <option value='1'>One</option>
-                      <option value='2'>Two</option>
-                      <option value='3'>Three</option>
-                    </select>
+                      dangerouslySetInnerHTML={{ __html: renderDays() }}
+                    ></select>
                   </div>
                 </div>
               </div>
@@ -132,10 +226,11 @@ export default function Register() {
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
-                      type='text'
+                      type='number'
+                      placeholder='ID Number'
                       value={idNumber}
                       onChange={(e) => {
-                        setIdNumber(e.target.value)
+                        setIdNumber(Number(e.target.value))
                       }}
                     />
                   </div>
@@ -143,27 +238,27 @@ export default function Register() {
               </div>
             </div>
 
-            {/* phone Number */}
             <div className='row'>
-              <div className='col-md-8'>
+              {/* phone Number */}
+              <div className='col-md-4'>
                 <div className='row'>
-                  <label>電話</label>
+                  <label>Phone Number</label>
                   <br />
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
                       type='text'
+                      placeholder='Phone Number'
                       value={phoneNumber}
                       onChange={(e) => {
-                        setIdNumber(e.target.value)
+                        setPhoneNumber(e.target.value)
                       }}
                     />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className='row'>
+              {/* Email */}
               <div className='col-md-4'>
                 <div className='row'>
                   <label>Email</label>
@@ -171,12 +266,21 @@ export default function Register() {
                   <div className='col-md-12 innerFieldDiv'>
                     <input
                       className='form-control'
-                      type='text'
+                      type='email'
+                      placeholder='Email'
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value)
+                      }}
                     />
                   </div>
                 </div>
               </div>
-              <div className='col-md-4'>
+            </div>
+
+            {/* Password */}
+            <div className='row'>
+              <div className='col-md-8'>
                 <div className='row'>
                   <label>Password</label>
                   <br />
@@ -184,6 +288,11 @@ export default function Register() {
                     <input
                       className='form-control'
                       type='password'
+                      placeholder='Password'
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value)
+                      }}
                     />
                   </div>
                 </div>
@@ -201,26 +310,30 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       onChange={(e) => {
-                        e.target.value === '3' ? setOtherOccupation(true) : setOtherOccupation(false)
+                        handleSetOccupation(e.target.value)
                       }}
                     >
                       <option selected>-Please Select</option>
-                      <option value='1'>Govt Servant</option>
-                      <option value='2'>Business Man</option>
-                      <option value='3'>Other</option>
+                      <option value='Government Service'>Govt Servant</option>
+                      <option value='Business Man'>Business Man</option>
+                      <option value='other'>Other</option>
                     </select>
                   </div>
-                  {otherOccupation && (<div className='col-md-6'>
-                    <div className='row'>
-                      <div className='col-md-12 innerFieldDiv'>
-                        <input
-                          className='form-control'
-                          type='text'
-                          placeholder='Plese spacify'
-                        />
+                  {otherOccupation && (
+                    <div className='col-md-6'>
+                      <div className='row'>
+                        <div className='col-md-12 innerFieldDiv'>
+                          <input
+                            className='form-control'
+                            type='text'
+                            placeholder='Plese spacify'
+                            value={occupation}
+                            onChange={(e) => setOccupation(e.target.value)}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>)}
+                  )}
                 </div>
               </div>
             </div>
@@ -235,14 +348,12 @@ export default function Register() {
                     <select
                       className='form-select'
                       aria-label='Default select example'
-                    // onChange={(e) => {
-                    //   e.target.value === 'DD' ? setDobDay('') : setDobDay(e.target.value)
-                    // }}
+                      onChange={(e) => setEducation(e.target.value)}
                     >
                       <option selected>-Please Select</option>
-                      <option value='1'>Business</option>
-                      <option value='2'>Techonology</option>
-                      <option value='3'>Arts</option>
+                      <option value='Business'>Business</option>
+                      <option value='Techonology'>Techonology</option>
+                      <option value='Arts'>Arts</option>
                     </select>
                   </div>
                 </div>
@@ -258,20 +369,57 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Menstrual cycle</h5>
-                    <div className="d-flex">
-                      <label class="con1"><span>20 Days</span>
-                        <input type="radio" name="radio1" checked />
-                        <span class="checkmark"></span>
+                    <div
+                      className='d-flex'
+                      onChange={(e) =>
+                        setMenstrualCycle(Number(e.target.value))
+                      }
+                    >
+                      <label class='con1'>
+                        <span>20 Days</span>
+                        <input
+                          type='radio'
+                          value={20}
+                          name='menstrual-cycle'
+                          checked={menstrualCycle === 20}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con1"><span>30 Days</span>
-                        <input type="radio" name="radio1" />
-                        <span class="checkmark"></span>
+                      <label class='con1'>
+                        <span>30 Days</span>
+                        <input
+                          type='radio'
+                          value={30}
+                          name='menstrual-cycle'
+                          checked={menstrualCycle === 30}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con1"><span> other</span>
-                        <input type="radio" name="radio1" />
-                        <span class="checkmark"></span>
-                        <input className="otherDayinput" type="text" />
-                        <label className="form-check-label" >Days</label>
+                      <label class='con1'>
+                        <span> other</span>
+                        <input
+                          type='radio'
+                          value={0}
+                          name='menstrual-cycle'
+                          checked={
+                            menstrualCycle !== 20 && menstrualCycle !== 30
+                          }
+                        />
+                        <span class='checkmark'></span>
+                        <input
+                          className='otherDayinput'
+                          type='text'
+                          disabled={
+                            menstrualCycle === 20 || menstrualCycle === 30
+                          }
+                          value={
+                            menstrualCycle === 20 || menstrualCycle === 30
+                              ? ''
+                              : menstrualCycle
+                          }
+                          onChange={(e) => setMenstrualCycle(e.target.value)}
+                        />
+                        <label className='form-check-label'>Days</label>
                       </label>
                     </div>
                   </div>
@@ -281,20 +429,50 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Have you been pregnant before</h5>
-                    <div className="d-flex flex-wrap">
-                      <label class="con2"><span>never pregnant and don not want to pregnant</span>
-                        <input type="radio" name="radio2" checked />
-                        <span class="checkmark"></span>
+                    <div
+                      className='d-flex flex-wrap'
+                      onChange={(e) => setPregCycle(Number(e.target.value))}
+                    >
+                      <label class='con2'>
+                        <span>never pregnant and don not want to pregnant</span>
+                        <input
+                          type='radio'
+                          name='pregnant-cycle'
+                          value={0}
+                          checked={pregCycle === 0}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con2"><span> Never pregnant but want to get pregnant</span>
-                        <input type="radio" name="radio2" />
-                        <span class="checkmark"></span>
+                      <label class='con2'>
+                        <span> Never pregnant but want to get pregnant</span>
+                        <input
+                          type='radio'
+                          name='pregnant-cycle'
+                          value={1}
+                          checked={pregCycle === 1}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con2"><span> pregnant</span>
-                        <input type="radio" name="radio2" />
-                        <span class="checkmark"></span>
-                        <input className="otherDayinput" type="text" />
-                        <label className="form-check-label" >time(s)</label>
+                      <label class='con2'>
+                        <span> pregnant</span>
+                        <input
+                          type='radio'
+                          name='pregnant-cycle'
+                          value={2}
+                          name='other'
+                          checked={pregCycle !== 0 && pregCycle !== 1}
+                        />
+                        <span class='checkmark'></span>
+                        <input
+                          className='otherDayinput'
+                          type='number'
+                          disabled={pregCycle === 0 || pregCycle === 1}
+                          value={
+                            pregCycle === 0 || pregCycle === 1 ? '' : pregCycle
+                          }
+                          onChange={(e) => setPregCycle(e.target.value)}
+                        />
+                        <label className='form-check-label'>time(s)</label>
                       </label>
                     </div>
                   </div>
@@ -304,14 +482,29 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Do you experience cramps or pain during your period</h5>
-                    <div className="d-flex flex-wrap">
-                      <label class="con3"><span>Yes, experience pain</span>
-                        <input type="radio" name="radio3" checked />
-                        <span class="checkmark"></span>
+                    <div
+                      className='d-flex flex-wrap'
+                      onChange={(e) => setCrampCycle(Number(e.target.value))}
+                    >
+                      <label class='con3'>
+                        <span>Yes, experience pain</span>
+                        <input
+                          type='radio'
+                          name='cramp-cycle'
+                          value={0}
+                          checked={crampCycle === 0}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con3"><span>No, do not experience pain</span>
-                        <input type="radio" name="radio3" />
-                        <span class="checkmark"></span>
+                      <label class='con3'>
+                        <span>No, do not experience pain</span>
+                        <input
+                          type='radio'
+                          name='cramp-cycle'
+                          value={1}
+                          checked={crampCycle === 1}
+                        />
+                        <span class='checkmark'></span>
                       </label>
                     </div>
                   </div>
@@ -321,18 +514,39 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>How much do you bleed</h5>
-                    <div className="d-flex flex-wrap">
-                      <label class="con4"><span>Heavy bleeding</span>
-                        <input type="radio" name="radio4" checked />
-                        <span class="checkmark"></span>
+                    <div
+                      className='d-flex flex-wrap'
+                      onChange={(e) => setBleedCycle(Number(e.target.value))}
+                    >
+                      <label class='con4'>
+                        <span>Heavy bleeding</span>
+                        <input
+                          type='radio'
+                          name='bleed-cycle'
+                          value={0}
+                          checked={bleedCycle === 0}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con4"><span>normal bleeding</span>
-                        <input type="radio" name="radio4" />
-                        <span class="checkmark"></span>
+                      <label class='con4'>
+                        <span>normal bleeding</span>
+                        <input
+                          type='radio'
+                          name='bleed-cycle'
+                          value={1}
+                          checked={bleedCycle === 1}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con4"><span>Light bleeding</span>
-                        <input type="radio" name="radio4" />
-                        <span class="checkmark"></span>
+                      <label class='con4'>
+                        <span>Light bleeding</span>
+                        <input
+                          type='radio'
+                          name='bleed-cycle'
+                          value={2}
+                          checked={bleedCycle === 2}
+                        />
+                        <span class='checkmark'></span>
                       </label>
                     </div>
                   </div>
@@ -342,47 +556,85 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Current lifestyle(Select alll application)</h5>
-                    <div className="d-flex flex-wrap">
-                      <label class="con5"><span>Smooking</span>
-                        <input type="radio" name="radio5" checked />
-                        <span class="checkmark"></span>
+                    <div
+                      className='d-flex flex-wrap'
+                      onChange={(e) => setLifeCycle(Number(e.target.value))}
+                    >
+                      <label class='con5'>
+                        <span>Smooking</span>
+                        <input
+                          type='radio'
+                          name='life-cycle'
+                          value={0}
+                          checked={lifeCycle === 0}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con5"><span>Alcohol consumption</span>
-                        <input type="radio" name="radio5" />
-                        <span class="checkmark"></span>
+                      <label class='con5'>
+                        <span>Alcohol consumption</span>
+                        <input
+                          type='radio'
+                          name='life-cycle'
+                          value={1}
+                          checked={lifeCycle === 1}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con5"><span>Frequently stayings Up</span>
-                        <input type="radio" name="radio5" />
-                        <span class="checkmark"></span>
+                      <label class='con5'>
+                        <span>Frequently stayings Up</span>
+                        <input
+                          type='radio'
+                          name='life-cycle'
+                          value={2}
+                          checked={lifeCycle === 2}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con5"><span>Feeling stressed</span>
-                        <input type="radio" name="radio5" />
-                        <span class="checkmark"></span>
+                      <label class='con5'>
+                        <span>Feeling stressed</span>
+                        <input
+                          type='radio'
+                          name='life-cycle'
+                          value={3}
+                          checked={lifeCycle === 3}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con5"><span>Feeling unstressed</span>
-                        <input type="radio" name="radio5" />
-                        <span class="checkmark"></span>
+                      <label class='con5'>
+                        <span>Feeling unstressed</span>
+                        <input
+                          type='radio'
+                          name='life-cycle'
+                          value={4}
+                          checked={lifeCycle === 4}
+                        />
+                        <span class='checkmark'></span>
                       </label>
-                      <label class="con5"><span>None of the above</span>
-                        <input type="radio" name="radio5" />
-                        <span class="checkmark"></span>
+                      <label class='con5'>
+                        <span>None of the above</span>
+                        <input
+                          type='radio'
+                          name='life-cycle'
+                          value={5}
+                          checked={lifeCycle === 5}
+                        />
+                        <span class='checkmark'></span>
                       </label>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
           <div className='row'>
             <div className='col-md-4 loginBackground'>
               <button onClick={handleRegister} className='btn'>
-                {isloading ? "Loading..." : "Register"}
+                {isloading ? 'Loading...' : 'Register'}
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
