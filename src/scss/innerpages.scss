@@ -51,11 +51,26 @@
 .innerpageright{
     padding-top:4%;
     background-color: #fffaf8;
+    .aiFormCard{
+        min-height: fit-content;
+        .custom-ai-img {
+            min-height: 300px;
+            min-width: 300px;
+            width: 80%;
+            height: 80%;
+            background-size: cover;
+            margin: auto;
+        }
+    }
+    .addBtn{
+        color:#E6917D;
+    }
     .formOptionCard{
         background: #fff;
         border-radius: 10px;
         color: #5C5C5C;
         box-shadow: 0 0 10px #8E8E8E;
+        
         .colorpill{
             background: #f9f2ef;
             padding: 10px 20px;
@@ -69,20 +84,71 @@
             width: 65%;
             float: left;
         }
+        ul{
+            list-style: none;
+            padding:0px;
+            li{
+                padding:5px; 
+            }
+        }
     }
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 765px) {
     .desktopHide{
         display: block;
     }
     .mobileHide{
         display: none;
     }
+    .innerpageright
+    {
+        .heading
+        {
+            margin:auto;
+            width: fit-content;
+        }
+        .headspan
+        {
+            margin-left: -15px;
+        }
+        .aiFormCard{
+           height:auto;
+           min-height: fit-content;           
+        }
+        .addBtn{
+            color:#E6917D;
+            display:flex;
+            justify-content: center;
+        }
+        
+    }
     .sidebar{
         height: auto !important;
         .mobilemenudiv{
             float: right;
+        }
+    
+    }
+}
+@media only screen and (min-width: 992px) {
+    .innerpageright{
+        .addBtn{
+           position:absolute;
+           top:30px;
+           right: 30px;
+            z-index:1;
+        }
+    }
+}
+@media only screen and (min-width: 768px) {
+    .innerpageright{
+        
+        .addBtn{
+           position:absolute;
+            top:30px;
+            right: 30px;
+            z-index:1;
         }
     }
 }
