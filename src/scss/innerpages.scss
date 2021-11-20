@@ -51,8 +51,12 @@
 .innerpageright{
     padding-top:4%;
     background-color: #fffaf8;
-    .aiFormCard{
-        min-height: fit-content;
+    .aiFormCard
+       {
+           height:250px;
+       }
+    .aiFormImg{
+       
         .custom-ai-img {
             min-height: 300px;
             min-width: 300px;
@@ -70,7 +74,6 @@
         border-radius: 10px;
         color: #5C5C5C;
         box-shadow: 0 0 10px #8E8E8E;
-        
         .colorpill{
             background: #f9f2ef;
             padding: 10px 20px;
@@ -120,6 +123,7 @@
             color:#E6917D;
             display:flex;
             justify-content: center;
+            padding:15px;
         }
         
     }

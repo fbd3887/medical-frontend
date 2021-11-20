@@ -23,22 +23,24 @@ export default function AiDoctor(){
                                         <img src={plus} />
                                         <span className="ms-2">新增紀錄</span>
                                     </div>
-                                    <div className="formOptionCard aiFormCard p-4">
-                                        <img src={ai_graph} alt="" className="custom-ai-img" />
+                                    <div className="formOptionCard aiFormImg p-4">
+                                        <div className="d-flex align-items-center">
+                                            <img src={ai_graph} alt="" className="custom-ai-img" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row position-relative mt-5 formdiv  align-items-center">
-                                <div className="col-md-6  pb-4">
-                                    <div className="formOptionCard  h-100 aiFormCard p-4">
+                            <div className="row  mt-5 align-items-center">
+                                <div className="col-md-6 pb-4 ">
+                                    <div className="formOptionCard aiFormCard p-4">
                                         <span className="colorpill"> 測驗結果分析 </span>
                                         <div className="mt-4">
                                             AMH值稍為低於平均，但還在正常範圍內。
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6 h-100 pb-4 ">
-                                    <div className="formOptionCard aiFormCard p-4">
+                                <div className="col-md-6  pb-4 ">
+                                    <div className="formOptionCard  aiFormCard p-4">
                                         <span className="colorpill"> 醫師建議 </span>
                                         <div className="mt-4">
                                             <ul>
