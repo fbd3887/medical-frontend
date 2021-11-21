@@ -1,9 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import '../../scss/outerpage.scss'
 import logo2 from '../../images/logo2.png'
 import { Link } from 'react-router-dom'
+import {login} from '../../api/axios'
 
 export default function Login() {
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [isLoading, setIsLoading] = useState(false)
+const handleLogin =()=>{
+  setIsLoading(true)
+  login({
+    "email_id": email,
+    "password": password
+  }, setIsLoading)
+}
+
   return (
     <div className="loginBackground">
       <div className="row min-vh-100 ">
@@ -27,7 +39,7 @@ export default function Login() {
               <div className="innerFieldDiv">
                 <label>EMAIL</label>
                 <br />
-                <input type="email" />
+                <input type="email"  value={email} onChange={(e)=>setEmail(e.target.value)} />
               </div>
             </div>
             <div className="loginFeild">
@@ -35,12 +47,14 @@ export default function Login() {
                 <label>
                   PASSWORD <span className="forgetLogin">FORGET?</span>
                 </label>
-                <input type="password" />
+                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
               </div>
             </div>
-            <Link to="/analytics">
-              <button className="btn">登入</button>
-            </Link>
+            {/* <Link to="/analytics"> */}
+              <button className="btn" onClick={handleLogin}>
+                {isLoading ? 'Loading ...': 'Login'}
+              </button>
+            {/* </Link> */}
           </div>
         </div>
       </div>
