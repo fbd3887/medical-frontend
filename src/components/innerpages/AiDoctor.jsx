@@ -3,7 +3,8 @@ import Sidebar from '../innerpages/Sidebar'
 import ai_graph from '../../images/ai_graph.png'
 import '../../scss/innerpages.scss'
 import plus from '../../images/plus.png'
-import tick from '../../images/tick.png'
+import AiDoctorCard from './AiDoctorCard'
+import { Link } from 'react-router-dom'
 export default function AiDoctor(){
     return(
         <div className="container-fluid">
@@ -19,10 +20,12 @@ export default function AiDoctor(){
                             </div>
                             <div className="row mt-2 align-items-center">
                                 <div className="col-md-12 position-relative">
-                                    <div className="addBtn">
-                                        <img src={plus} />
-                                        <span className="ms-2">新增紀錄</span>
-                                    </div>
+                                    <Link to="/aidoctorform">
+                                        <div className="addBtn" >
+                                            <img src={plus} />
+                                            <span className="ms-2">新增紀錄</span>
+                                        </div>
+                                    </Link>
                                     <div className="formOptionCard aiFormImg p-4">
                                         <div className="d-flex align-items-center">
                                             <img src={ai_graph} alt="" className="custom-ai-img" />
@@ -30,29 +33,7 @@ export default function AiDoctor(){
                                     </div>
                                 </div>
                             </div>
-                            <div className="row  mt-5 align-items-center">
-                                <div className="col-md-6 pb-4 ">
-                                    <div className="formOptionCard aiFormCard p-4">
-                                        <span className="colorpill"> 測驗結果分析 </span>
-                                        <div className="mt-4">
-                                            AMH值稍為低於平均，但還在正常範圍內。
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6  pb-4 ">
-                                    <div className="formOptionCard  aiFormCard p-4">
-                                        <span className="colorpill"> 醫師建議 </span>
-                                        <div className="mt-4">
-                                            <ul>
-                                                <li><img src={tick}/>&nbsp;&nbsp;多照顧自己</li>
-                                                <li><img src={tick}/>&nbsp;&nbsp;少熬夜</li>
-                                                <li><img src={tick}/>&nbsp;&nbsp;目前若無對象，且不忙於工作，可以考慮凍卵</li>
-                                            </ul>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <AiDoctorCard/>
                         </div>
                     </div>
                 </div>

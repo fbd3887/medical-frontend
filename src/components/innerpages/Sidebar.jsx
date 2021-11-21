@@ -27,9 +27,11 @@ export default function Sidebar() {
             </Link>
           </div>
           <div className="col-md-12 leftmenuitem">
-            <p>
-              <img src={AidoctorIcon} alt="" /> AI 醫生診斷
-            </p>
+            <Link to="/aiDoctor">
+              <p>
+                <img src={AidoctorIcon} alt="" /> AI 醫生診斷
+              </p>
+            </Link>
           </div>
           <div className="col-md-12 leftmenuitem">
             <Link to="/account">
@@ -47,9 +49,11 @@ export default function Sidebar() {
             </Link>
           </div>
           <div className="col-md-12 leftmenuitem">
-            <p>
-              <img src={SpecialIcon} alt="" /> 特別折扣
-            </p>
+            <Link to="/discount"> 
+              <p>
+                <img src={SpecialIcon} alt="" /> 特別折扣
+              </p>
+            </Link>
           </div>
           <div className="col-md-12 logoutdiv">
             <Link to="/">
