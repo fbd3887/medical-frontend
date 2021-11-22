@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
+import { validate } from '../../utils/validation'
 import { register } from '../../api/axios'
 const monthNames = [
   'January',
@@ -17,33 +20,70 @@ const monthNames = [
   'December',
 ]
 export default function Register() {
-  const [email, setEmail] = useState('test1@gmail.com')
-  const [password, setPassword] = useState('12345678')
-  const [phoneNumber, setPhoneNumber] = useState('12345678910')
-  const [occupation, setOccupation] = useState('Government Service')
-  const [finance, setFinance] = useState('100000')
-  const [dobDay, setDobDay] = useState('2')
-  const [dobMonth, setDobMonth] = useState('3')
-  const [dobYear, setDobYear] = useState('1994')
-  const [education, setEducation] = useState('Techonology')
+  const initialValues = {
+    email: 'test1@gmail.com',
+    password: '12345678',
+    phoneNumber: '12345678910',
+    occupation: '-1',
+    finance: '10000',
+    dobDay: 'DD',
+    dobMonth: 'MM',
+    dobYear: 'YYYY',
+    education: '-1',
+    name: 'Mubeen',
+    idNumber: 12344,
+    biologicalAge: '',
+    overyAge: '',
+    amhLevel: '',
+    lifeCycle: '0',
+    pregCycle:'0',
+    menstrualCycle:'20',
+    crampCycle:'0',
+    bleedCycle:'0',
 
-  const [name, setName] = useState('Mubeen')
-  const [idNumber, setIdNumber] = useState(12345)
-
-  const [menstrualCycle, setMenstrualCycle] = useState(20)
-  const [bleedCycle, setBleedCycle] = useState(0)
-  const [biologicalAge, setBiologicalAge] = useState('10')
-  const [overyAge, setOveryAge] = useState('10')
-  const [amhLevel, setAmhLevel] = useState('1.6')
-  const [crampCycle, setCrampCycle] = useState(0)
-  const [lifeCycle, setLifeCycle] = useState(0)
-  const [pregCycle, setPregCycle] = useState(0)
-
+  }
+  const [registerForm, setRegisterForm] = useState(initialValues)
+  const [errors, setErrors] = useState({})
   const [otherOccupation, setOtherOccupation] = useState('')
-
-  const [isloading, setIsLoading] = useState(false)
+  const [isloading, setIsLoading] = useState(false);
+  const [isSubmitted, setSubmitted] = useState(false)
 
   const handleRegister = () => {
+  setErrors(validate(registerForm));
+  setSubmitted(true)
+  }
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitted) {
+      registerNewUser();
+    } else {
+      Object.keys(errors).map((key, index) => {
+        toast.error(errors[key]);
+      });
+    }
+  }, [errors]);
+
+  const registerNewUser=()=>{
+    const {
+      email,
+      password,
+      phoneNumber,
+      occupation,
+      finance,
+      dobDay,
+      dobMonth,
+      dobYear,
+      education,
+      idNumber,
+      biologicalAge,
+      overyAge,
+      amhLevel,
+      lifeCycle,
+      pregCycle,
+      menstrualCycle,
+      crampCycle,
+      bleedCycle,
+    } = registerForm
     setIsLoading(true)
     register(
       {
@@ -54,18 +94,20 @@ export default function Register() {
         "dob": `${dobYear}-${dobMonth}-${dobDay}`,
         "education": education,
         'id_number':idNumber,
-        "menstrual_cycle": menstrualCycle,
-        "bleed_cycle": bleedCycle,
-        "cramp_cycle": crampCycle,
-        "life_cycle": lifeCycle,
-        "preg_cycle": pregCycle,
+        "menstrual_cycle": Number(menstrualCycle),
+        "bleed_cycle": Number(bleedCycle),
+        "cramp_cycle": Number(crampCycle),
+        "life_cycle": Number(lifeCycle),
+        "preg_cycle": Number(pregCycle),
         "biological_age": biologicalAge,
         "overy_age": overyAge,
         "amh_level": amhLevel,
-        "finance": finance        
+        "finance": finance
       },
-      setIsLoading
+      setIsLoading,
+      toast
     )
+    setSubmitted(false)
   }
 
   const renderYears = () => {
@@ -93,14 +135,20 @@ export default function Register() {
     return days
   }
 
-  const handleSetOccupation = (value) => {
-    if (value !== 'other') {
-      setOccupation(value)
+  const handleSetOccupation = (e) => {
+    const { name, value } = e.target
+    if (e.target.value !== 'other') {
+      setRegisterForm({ ...registerForm, occupation: value })
       setOtherOccupation(false)
     } else {
       setOtherOccupation(true)
-      setOccupation('')
+      setRegisterForm({ ...registerForm, occupation: '' })
     }
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setRegisterForm({ ...registerForm, [name]: value })
   }
 
   return (
@@ -113,10 +161,11 @@ export default function Register() {
             <div className='treeOptionTabHeding'>實際年齡</div>
             <div className='treeOptionTabOption'>
               <input
-              className='form-control'
+                className='form-control'
                 type='text'
-                value={biologicalAge}
-                onChange={(e) => setBiologicalAge(e.target.value)}
+                name='biologicalAge'
+                value={registerForm.biologicalAge}
+                onChange={handleChange}
               />
               歲
             </div>
@@ -127,8 +176,9 @@ export default function Register() {
               <input
                 type='text'
                 className='form-control'
-                value={overyAge}
-                onChange={(e) => setOveryAge(e.target.value)}
+                name='overyAge'
+                value={registerForm.overyAge}
+                onChange={handleChange}
               />
               歲
             </div>
@@ -139,8 +189,9 @@ export default function Register() {
               <input
                 type='text'
                 className='form-control'
-                value={amhLevel}
-                onChange={(e) => setAmhLevel(e.target.value)}
+                name='amhLevel'
+                value={registerForm.amhLevel}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -161,10 +212,9 @@ export default function Register() {
                       className='form-control'
                       placeholder='Name'
                       type='text'
-                      value={name}
-                      onChange={(e) => {
-                        setName(e.target.value)
-                      }}
+                      name='name'
+                      value={registerForm.name}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -181,11 +231,9 @@ export default function Register() {
                     <select
                       className='form-select'
                       aria-label='Default select example'
-                      onChange={(e) => {
-                        e.target.value === 'YYYY'
-                          ? setDobYear('')
-                          : setDobYear(e.target.value)
-                      }}
+                      name='dobYear'
+                      value={registerForm.dobYear}
+                      onChange={handleChange}
                       dangerouslySetInnerHTML={{ __html: renderYears() }}
                     ></select>
                   </div>
@@ -193,11 +241,9 @@ export default function Register() {
                     <select
                       className='form-select'
                       aria-label='Default select example'
-                      onChange={(e) => {
-                        e.target.value === 'MM'
-                          ? setDobMonth('')
-                          : setDobMonth(e.target.value)
-                      }}
+                      name='dobMonth'
+                      value={registerForm.dobMonth}
+                      onChange={handleChange}
                       dangerouslySetInnerHTML={{ __html: renderMonths() }}
                     ></select>
                   </div>
@@ -205,11 +251,9 @@ export default function Register() {
                     <select
                       className='form-select'
                       aria-label='Default select example'
-                      onChange={(e) => {
-                        e.target.value === 'DD'
-                          ? setDobDay('')
-                          : setDobDay(e.target.value)
-                      }}
+                      name='dobDay'
+                      value={registerForm.dobDay}
+                      onChange={handleChange}
                       dangerouslySetInnerHTML={{ __html: renderDays() }}
                     ></select>
                   </div>
@@ -228,10 +272,9 @@ export default function Register() {
                       className='form-control'
                       type='number'
                       placeholder='ID Number'
-                      value={idNumber}
-                      onChange={(e) => {
-                        setIdNumber(Number(e.target.value))
-                      }}
+                      name='idNumber'
+                      value={registerForm.idNumber}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -249,10 +292,9 @@ export default function Register() {
                       className='form-control'
                       type='text'
                       placeholder='Phone Number'
-                      value={phoneNumber}
-                      onChange={(e) => {
-                        setPhoneNumber(e.target.value)
-                      }}
+                      name='phoneNumber'
+                      value={registerForm.phoneNumber}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -268,10 +310,9 @@ export default function Register() {
                       className='form-control'
                       type='email'
                       placeholder='Email'
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value)
-                      }}
+                      name='email'
+                      value={registerForm.email}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -289,10 +330,9 @@ export default function Register() {
                       className='form-control'
                       type='password'
                       placeholder='Password'
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value)
-                      }}
+                      name='password'
+                      value={registerForm.password}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -309,11 +349,9 @@ export default function Register() {
                     <select
                       className='form-select'
                       aria-label='Default select example'
-                      onChange={(e) => {
-                        handleSetOccupation(e.target.value)
-                      }}
+                      onChange={handleSetOccupation}
                     >
-                      <option selected>-Please Select</option>
+                      <option selected value='-1'>-Please Select</option>
                       <option value='Government Service'>Govt Servant</option>
                       <option value='Business Man'>Business Man</option>
                       <option value='other'>Other</option>
@@ -327,8 +365,9 @@ export default function Register() {
                             className='form-control'
                             type='text'
                             placeholder='Plese spacify'
-                            value={occupation}
-                            onChange={(e) => setOccupation(e.target.value)}
+                            name='occupation'
+                            value={registerForm.occupation}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -348,9 +387,12 @@ export default function Register() {
                     <select
                       className='form-select'
                       aria-label='Default select example'
-                      onChange={(e) => setEducation(e.target.value)}
+                      name='education'
+                      value={registerForm.education}
+                      onChange={handleChange}
+                      // onChange={(e) => setEducation(e.target.value)}
                     >
-                      <option selected>-Please Select</option>
+                      <option selected value='-1'>-Please Select</option>
                       <option value='Business'>Business</option>
                       <option value='Techonology'>Techonology</option>
                       <option value='Arts'>Arts</option>
@@ -369,55 +411,57 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Menstrual cycle</h5>
-                    <div
-                      className='d-flex'
-                      onChange={(e) =>
-                        setMenstrualCycle(Number(e.target.value))
-                      }
-                    >
-                      <label class='con1'>
+                    <div className='d-flex'>
+                      <label className='con1'>
                         <span>20 Days</span>
                         <input
                           type='radio'
-                          value={20}
-                          name='menstrual-cycle'
-                          checked={menstrualCycle === 20}
+                          value='20'
+                          name='menstrualCycle'
+                          checked={registerForm.menstrualCycle === '20'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con1'>
+                      <label className='con1'>
                         <span>30 Days</span>
                         <input
                           type='radio'
-                          value={30}
-                          name='menstrual-cycle'
-                          checked={menstrualCycle === 30}
+                          value='30'
+                          name='menstrualCycle'
+                          checked={registerForm.menstrualCycle === '30'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con1'>
+                      <label className='con1'>
                         <span> other</span>
                         <input
                           type='radio'
-                          value={0}
-                          name='menstrual-cycle'
+                          value=''
+                          name='menstrualCycle'
                           checked={
-                            menstrualCycle !== 20 && menstrualCycle !== 30
+                            registerForm.menstrualCycle !== '20' &&
+                            registerForm.menstrualCycle !== '30'
                           }
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                         <input
                           className='otherDayinput'
                           type='text'
+                          name='menstrualCycle'
                           disabled={
-                            menstrualCycle === 20 || menstrualCycle === 30
+                            registerForm.menstrualCycle === '20' ||
+                            registerForm.menstrualCycle === '30'
                           }
                           value={
-                            menstrualCycle === 20 || menstrualCycle === 30
+                            registerForm.menstrualCycle === '20' ||
+                            registerForm.menstrualCycle === '30'
                               ? ''
-                              : menstrualCycle
+                              : registerForm.menstrualCycle
                           }
-                          onChange={(e) => setMenstrualCycle(e.target.value)}
+                          onChange={handleChange}
                         />
                         <label className='form-check-label'>Days</label>
                       </label>
@@ -431,46 +475,49 @@ export default function Register() {
                     <h5>Have you been pregnant before</h5>
                     <div
                       className='d-flex flex-wrap'
-                      onChange={(e) => setPregCycle(Number(e.target.value))}
                     >
-                      <label class='con2'>
+                      <label className='con2'>
                         <span>never pregnant and don not want to pregnant</span>
                         <input
                           type='radio'
-                          name='pregnant-cycle'
+                          name='pregCycle'
                           value={0}
-                          checked={pregCycle === 0}
+                          checked={registerForm.pregCycle === '0'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con2'>
+                      <label className='con2'>
                         <span> Never pregnant but want to get pregnant</span>
                         <input
                           type='radio'
-                          name='pregnant-cycle'
+                          name='pregCycle'
                           value={1}
-                          checked={pregCycle === 1}
+                          checked={registerForm.pregCycle === '1'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con2'>
+                      <label className='con2'>
                         <span> pregnant</span>
                         <input
                           type='radio'
                           name='pregnant-cycle'
                           value={2}
-                          name='other'
-                          checked={pregCycle !== 0 && pregCycle !== 1}
+                          name='pregCycle'
+                          checked={registerForm.pregCycle !== '0' && registerForm.pregCycle !== '1'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                         <input
                           className='otherDayinput'
                           type='number'
-                          disabled={pregCycle === 0 || pregCycle === 1}
+                          disabled={registerForm.pregCycle === '0' || registerForm.pregCycle === '1'}
+                          name='pregCycle'
                           value={
-                            pregCycle === 0 || pregCycle === 1 ? '' : pregCycle
+                            registerForm.pregCycle === '0' || registerForm.pregCycle === '1' ? '' : registerForm.pregCycle
                           }
-                          onChange={(e) => setPregCycle(e.target.value)}
+                          onChange={handleChange}
                         />
                         <label className='form-check-label'>time(s)</label>
                       </label>
@@ -482,29 +529,28 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Do you experience cramps or pain during your period</h5>
-                    <div
-                      className='d-flex flex-wrap'
-                      onChange={(e) => setCrampCycle(Number(e.target.value))}
-                    >
-                      <label class='con3'>
+                    <div className='d-flex flex-wrap'>
+                      <label className='con3'>
                         <span>Yes, experience pain</span>
                         <input
                           type='radio'
-                          name='cramp-cycle'
+                          name='crampCycle'
                           value={0}
-                          checked={crampCycle === 0}
+                          checked={registerForm.crampCycle === '0'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con3'>
+                      <label className='con3'>
                         <span>No, do not experience pain</span>
                         <input
                           type='radio'
-                          name='cramp-cycle'
+                          name='crampCycle'
                           value={1}
-                          checked={crampCycle === 1}
+                          checked={registerForm.crampCycle === '1'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
                     </div>
                   </div>
@@ -514,39 +560,39 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>How much do you bleed</h5>
-                    <div
-                      className='d-flex flex-wrap'
-                      onChange={(e) => setBleedCycle(Number(e.target.value))}
-                    >
-                      <label class='con4'>
+                    <div className='d-flex flex-wrap'>
+                      <label className='con4'>
                         <span>Heavy bleeding</span>
                         <input
                           type='radio'
-                          name='bleed-cycle'
+                          name='bleedCycle'
                           value={0}
-                          checked={bleedCycle === 0}
+                          checked={registerForm.bleedCycle === '0'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con4'>
+                      <label className='con4'>
                         <span>normal bleeding</span>
                         <input
                           type='radio'
-                          name='bleed-cycle'
+                          name='bleedCycle'
                           value={1}
-                          checked={bleedCycle === 1}
+                          checked={registerForm.bleedCycle === '1'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con4'>
+                      <label className='con4'>
                         <span>Light bleeding</span>
                         <input
                           type='radio'
-                          name='bleed-cycle'
+                          name='bleedCycle'
                           value={2}
-                          checked={bleedCycle === 2}
+                          checked={registerForm.bleedCycle === '2'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
                     </div>
                   </div>
@@ -556,69 +602,72 @@ export default function Register() {
                 <div className='col-md-8'>
                   <div className='row'>
                     <h5>Current lifestyle(Select alll application)</h5>
-                    <div
-                      className='d-flex flex-wrap'
-                      onChange={(e) => setLifeCycle(Number(e.target.value))}
-                    >
-                      <label class='con5'>
+                    <div className='d-flex flex-wrap'>
+                      <label className='con5'>
                         <span>Smooking</span>
                         <input
                           type='radio'
-                          name='life-cycle'
+                          name='lifeCycle'
                           value={0}
-                          checked={lifeCycle === 0}
+                          checked={registerForm.lifeCycle === '0'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con5'>
+                      <label className='con5'>
                         <span>Alcohol consumption</span>
                         <input
                           type='radio'
-                          name='life-cycle'
+                          name='lifeCycle'
                           value={1}
-                          checked={lifeCycle === 1}
+                          checked={registerForm.lifeCycle === '1'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con5'>
+                      <label className='con5'>
                         <span>Frequently stayings Up</span>
                         <input
                           type='radio'
-                          name='life-cycle'
+                          name='lifeCycle'
                           value={2}
-                          checked={lifeCycle === 2}
+                          checked={registerForm.lifeCycle === '2'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con5'>
+                      <label className='con5'>
                         <span>Feeling stressed</span>
                         <input
                           type='radio'
-                          name='life-cycle'
+                          name='lifeCycle'
                           value={3}
-                          checked={lifeCycle === 3}
+                          checked={registerForm.lifeCycle === '3'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con5'>
+                      <label className='con5'>
                         <span>Feeling unstressed</span>
                         <input
                           type='radio'
-                          name='life-cycle'
+                          name='lifeCycle'
                           value={4}
-                          checked={lifeCycle === 4}
+                          checked={registerForm.lifeCycle === '4'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
-                      <label class='con5'>
+                      <label className='con5'>
                         <span>None of the above</span>
                         <input
                           type='radio'
-                          name='life-cycle'
+                          name='lifeCycle'
                           value={5}
-                          checked={lifeCycle === 5}
+                          checked={registerForm.lifeCycle === '5'}
+                          onChange={handleChange}
                         />
-                        <span class='checkmark'></span>
+                        <span className='checkmark'></span>
                       </label>
                     </div>
                   </div>
@@ -635,6 +684,7 @@ export default function Register() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }
