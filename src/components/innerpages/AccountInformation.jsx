@@ -14,7 +14,7 @@ export default function AccountInformation() {
           <div className="row">
             <div class="col-md-10 offset-md-1">
               <div className="formOptionCard ">
-                <div className="row p-5 mt-5 align-items-center">
+                <div className="row p-5 mt-2 align-items-center">
                   <div className="col-md-4 text-center">
                     <p>林慧珍</p>
                     <span className="colorpill">1995/02/14</span>
@@ -48,7 +48,7 @@ export default function AccountInformation() {
           <div className="row">
             <div class="col-md-10 offset-md-1">
               <div className="formOptionCard ">
-                <div className="row p-5 mt-5 align-items-center">
+                <div className="row p-5 mt-5 mb-3 align-items-center">
                   <div className="col-md-12">
                     <h2>婦科資訊</h2>
                   </div>
