@@ -23,7 +23,7 @@ export const register=(userData, setIsLoading, toast)=>{
  });
 }
 
-export const login=(userData, setIsLoading)=>{
+export const login=(userData, setIsLoading, toast)=>{
   api.post('/login', userData)
   .then(res=>{
     window.localStorage.setItem('user-token',res.data.token)
@@ -31,8 +31,8 @@ export const login=(userData, setIsLoading)=>{
     window.location.replace('/analytics')
   })
   .catch(error=>{
-    if(error.response.message) alert(error.response.message);
-     if(error.response.data.error) alert(error.response.data.error)
+    if(error.response.message) toast.error(error.response.message);
+     if(error.response.data.error) toast.error(error.response.data.error)
     setIsLoading(false)
   })
 }

@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
-import { validate } from '../../utils/validation'
+import { validateRegister } from '../../utils/validation'
 import { register } from '../../api/axios'
 const monthNames = [
   'January',
@@ -49,7 +49,7 @@ export default function Register() {
   const [isSubmitted, setSubmitted] = useState(false)
 
   const handleRegister = () => {
-  setErrors(validate(registerForm));
+  setErrors(validateRegister(registerForm));
   setSubmitted(true)
   }
 

@@ -1,19 +1,44 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../../scss/outerpage.scss'
 import logo2 from '../../images/logo2.png'
 import { Link } from 'react-router-dom'
+import { validateLogin } from '../../utils/validation'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {login} from '../../api/axios'
 
 export default function Login() {
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [isLoading, setIsLoading] = useState(false)
+const [errors, setErrors] = useState({})
+const [isSubmitted, setIsSubmitted] = useState(false)
+
+useEffect(() => {
+  if (Object.keys(errors).length === 0 && isSubmitted) {
+    loginAPI();
+  } else {
+    Object.keys(errors).map((key, index) => {
+      toast.error(errors[key]);
+    });
+  }
+}, [errors]);
+
 const handleLogin =()=>{
+  setErrors(validateLogin({
+    "email":email,
+    "password":password
+  }))
+  setIsSubmitted(true)
+}
+
+const loginAPI=()=>{  
   setIsLoading(true)
   login({
     "email_id": email,
     "password": password
-  }, setIsLoading)
+  }, setIsLoading,
+  toast)
 }
 
   return (
@@ -58,6 +83,7 @@ const handleLogin =()=>{
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

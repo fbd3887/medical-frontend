@@ -1,4 +1,4 @@
-export const validate = (form) => {
+export const validateRegister = (form) => {
   const {
     email,
     password,
@@ -61,6 +61,22 @@ export const validate = (form) => {
   }
 
   return errors
+}
+
+export const validateLogin=({email, password})=>{
+  let errors = {}
+
+  if (!email) {
+    errors.email = 'Email is required.'
+  }else if(!validateEmail(email)){
+   errors.email = 'Email is not valid.'
+  }
+  if(!password){
+   errors.password = 'Please enter password';
+  }else if(password.length < 8){
+   errors.password = 'Password must be atleast 8 characters'
+  }
+  return errors;
 }
 
 function validateEmail(email) {
