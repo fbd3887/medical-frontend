@@ -18,7 +18,7 @@ const handleLogin =()=>{
 
   return (
     <div className="loginBackground">
-      <div className="row min-vh-100 ">
+      <div className="row min-vh-100 login-contaner">
         <div className="col-md-5 my-auto leftlogin">
           <h1 className="text-center m-5">生理的最佳指標 AMH</h1>
           <h3 className="text-center  m-5">
@@ -29,7 +29,7 @@ const handleLogin =()=>{
             沒有帳戶？ <Link to="/register">點這註冊</Link>
           </h3>
         </div>
-        <div className="col-md-7 my-auto text-center">
+        <div className="col-md-7 mt-4 mt-md-auto my-auto text-center">
           <div className="loginFormDiv">
             <img src={logo2} alt="" />
             <div className="loginHeading text-left">
