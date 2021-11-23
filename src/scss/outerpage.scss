@@ -3,6 +3,13 @@
     margin: 0;
    
 }
+
+.outerheaderMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .example::-webkit-scrollbar {
     display: none;
   }
@@ -20,7 +27,7 @@
 }
 
 .form-select {
-    font-size: 12px;
+    font-size: 1rem;
 }
 
 .otherDayinput {
@@ -102,6 +109,15 @@
             background:#F9F2EF;
             margin-bottom: 20px;
         }
+        .treeOptionTabOption {
+            display: flex;
+            align-items: center;
+            justify-content: center;  
+            .form-control {
+                width: 40%;
+                margin-right: 12px;
+            }     
+        }
     }
     .formOptionCard{
         background: #fff;
@@ -110,6 +126,8 @@
         color: #5C5C5C;
         box-shadow: 0 0 10px #8E8E8E;
         h3{
+            width: fit-content;
+            border-bottom: 3px solid #b0d7f9;
             margin-bottom: 5%;
         }
         .innerFieldDiv{
