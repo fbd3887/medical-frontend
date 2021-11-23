@@ -57,6 +57,7 @@
       }
 .innerpageright{
     
+
     .style-box{
         
         padding-left: 10px;
@@ -67,7 +68,16 @@
         font-size: 16px;
         
     }
-   
+    
+    .editbutton{
+        width:160px;
+        color:#E6917D;
+        border-width: thin;
+        padding: 3px 12px 3px 12px;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: #E6917D;
+    }
     .bookbutton{
       
         color:#E6917D;
@@ -143,7 +153,12 @@
     .shift_end{
         display: flex;
         justify-content: end;
-
+    }
+    .marginendsmall{
+        margin-right: 12px;
+    }
+    .btntopmargin{
+        margin-top:20px;
     }
     .discountimg
     {
@@ -224,6 +239,12 @@
     }
 }
 @media only screen and (min-width: 768px) {
+    .marginendlg{
+        margin-right:25px;
+    }
+    .divalign{
+        align-items: center;
+    }
     .discountimg
     {
         width: 100%;

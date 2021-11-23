@@ -32,13 +32,18 @@ export default function AccountInformation() {
                       <div className="leftlabel">Email</div>
                       <div className="rightdata">example@example.com</div>
                     </div>
-                    <div className="row pt-2 pb-2 align-items-center">
+                    <div className="row pt-2 pb-1 align-items-center">
                       <div className="leftlabel">職業</div>
                       <div className="rightdata">財務人</div>
                     </div>
-                    <div className="row pt-2 pb-2 align-items-center ">
+                    <div className="row pt-2 pb-2 divalign ">
                       <div className="leftlabel">學歷</div>
-                      <div className="rightdata">研究所</div>
+                      <div className="rightdata align-items-center sm:mt-3 d-sm-flex flex-sm-colum flex-md-row justify-content-between ">
+                        <div className=" ">研究所</div>
+                        <div className=" editbutton text-center btntopmargin "> 
+                        變更會員資料 <span className="me-1 ms-1 h5">&#62;</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -76,6 +81,11 @@ export default function AccountInformation() {
                       <div className="rightdata">
                         抽菸 | 喝酒 | 熬夜 |壓力大
                       </div>
+                    </div>
+                    <div className="d-flex justify-content-end mt-4 marginendsmall marginendlg">
+                      <div className="  editbutton text-center btntopmargin  "> 
+                            變更會員資料 <span className="me-1 ms-1 h5">&#62;</span>
+                        </div>
                     </div>
                   </div>
                 </div>

@@ -27,7 +27,7 @@ export default function Discount() {
                                             <h4 className="color-orange">凍卵限定專案</h4>
                                         </div>
                                         <div className="col-md-6 mb-4">
-                                        留住最好的青春，凍卵即存細胞專案<br/>10年保管費最優惠<br/>適合自主獨立的女身                                        
+                                        留住最好的青春, 凍卵即存細胞專案<br/>10年保管費最優惠<br/>適合自主獨立的女身                                        
                                         </div>
                                         <div className="bookbutton mb-4"> 
                                             立即預約檢查 <span className="me-1 ms-1 h5">&#62;</span>
