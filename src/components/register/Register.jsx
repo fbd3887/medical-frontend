@@ -4,21 +4,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
 import { validateRegister } from '../../utils/validation'
+import {renderDays, renderMonths, renderYears} from '../../utils/misc'
 import { register } from '../../api/axios'
-const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-]
+
 export default function Register() {
   const initialValues = {
     email: 'test1@gmail.com',
@@ -108,31 +96,6 @@ export default function Register() {
       toast
     )
     setSubmitted(false)
-  }
-
-  const renderYears = () => {
-    let currentYear = new Date().getFullYear()
-    let years = '<option selected >YYYY</option>'
-    for (let i = currentYear; i >= 1900; i--) {
-      years += `<option value=${i} >${i}</option>`
-    }
-    return years
-  }
-
-  const renderMonths = () => {
-    let months = '<option selected >MM</option>'
-    for (let i = 0; i < monthNames.length; i++) {
-      months += `<option value=${i + 1} >${monthNames[i]}</option>`
-    }
-    return months
-  }
-
-  const renderDays = () => {
-    let days = '<option selected >DD</option>'
-    for (let i = 1; i <= 31; i++) {
-      days += `<option value=${i} >${i}</option>`
-    }
-    return days
   }
 
   const handleSetOccupation = (e) => {
