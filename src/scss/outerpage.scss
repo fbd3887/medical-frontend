@@ -141,7 +141,13 @@
     .leftlogin{
         padding: 2%;
         h1,h3{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             color: #fff;
+            a {
+                margin-top: 12px;
+            }
         }
     }
     .loginFormDiv{
@@ -175,6 +181,7 @@
                 input{
                     width: 100%;
                     border: none;
+                    outline: none;
                 }
             }
         }
@@ -187,6 +194,23 @@
     }
     
    
+}
+
+@media screen and (max-width: 768px) {
+    .loginBackground{
+        background-image: none ;
+    }
+    .loginBackground .leftlogin {
+        margin-top: 0 !important;
+        background-color: #d3755f;
+    }
+    .loginBackground .loginFormDiv {
+        width: 90%;
+    }
+
+    .login-contaner {
+        min-height: auto !important;
+    }
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
