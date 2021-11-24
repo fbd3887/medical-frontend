@@ -1,6 +1,8 @@
 import React from 'react'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
+import Line from '../../images/Line.png'
+import Fb from '../../images/Fb.png'
 export default function Contact() {
   return (
     <div className="outerPage">
@@ -99,6 +101,40 @@ export default function Contact() {
               </div>
             </div>
             <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <div className="row">
+                  <label>聯繫原因 （可複選）</label>
+                </div>
+                <div className="row mt-2">
+                
+                    <div className="col-4 col-md-3
+                       labelfontsmall">
+                      <input id="inside" type="checkbox" checked />&nbsp;
+                      <label for="inside" >想更了解AMH</label>
+                    </div>
+                    <div className="col-3 labelfontsmall">
+                      <input id="inside" type="checkbox" />&nbsp;
+                      <label for="inside" >想凍卵</label>
+                    </div>
+                    <div className="col-3  labelfontsmall">
+                      <input id="inside" type="checkbox" />&nbsp;
+                      <label for="inside" >想懷孕</label>
+                    </div>
+                    <div className="col-3  labelfontsmall">
+                      <input id="inside" type="checkbox" />&nbsp;
+                      <label for="inside" >找專業醫生</label>
+                    </div>
+                    <div className="col-2 ms-3 ms-md-0  mt-md-2  labelfontsmall">
+                      <input id="inside" type="checkbox" />&nbsp;
+                      <label for="inside" >其他</label>
+                    </div>
+                    <div className="col-md-10 innerFieldDiv ">
+                        <input className="form-control" type="email" placeholder="請填寫其他原因" />
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
               <div className="col-md-8 offset-md-2 text-center">
                 <button className="btn contactbtn">馬上聯繫</button>
               </div>
@@ -124,13 +160,31 @@ export default function Contact() {
                   ></iframe>
                 </div>
               </div>
-              <div className="col-md-5">
-                <div className="row">
-                  <label>生日</label>
-                  <br />
-                  <div className="col-md-12 innerFieldDiv">
-                    <input className="form-control" type="text" />
+              <div className="col-md-5  ">
+                <div className="row mt-5 ms-2">
+                  <div className="d-flex p-2 justify-content-md-center">
+                      <h3> 華育生殖醫學中心</h3>
                   </div>
+                </div>
+                <div className="row ms-1 mt-2">
+                    <div className="col-12 p-2">
+                      10681 台北市大安區敦化南路2段39號12樓
+                    </div>
+                    <div className="col-12 p-2">
+                      Tel &nbsp; &nbsp; 02-2709 9966
+                    </div>
+                    <div className="col-12 p-2">
+                      Email &nbsp; &nbsp; contactme@huayuivf.com
+                    </div>
+
+                    <div className="col-12 p-2 mt-3">
+                      <img src={Line}/> &nbsp; &nbsp; @hyivf
+                    </div>
+                    <div className="col-12 mb-2">
+                      <img src={Fb}/> &nbsp; &nbsp; @hyobsivf
+                    </div>
+
+
                 </div>
               </div>
             </div>
