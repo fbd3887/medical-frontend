@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 
-export const register=(userData, setIsLoading)=>{
+export const register=(userData, setIsLoading, toast)=>{
  api.post('/register', userData)
  .then(res => {
    if(res.status === 200){
@@ -17,13 +17,13 @@ export const register=(userData, setIsLoading)=>{
    setIsLoading(false)
  })
  .catch(error => {
-     if(error.response.message) alert(error.response.message);
-     if(error.response.data.error) alert(error.response.data.error)
+     if(error.response.message) toast.error(error.response.message);
+     if(error.response.data.error) toast.error(error.response.data.error)
      setIsLoading(false)
  });
 }
 
-export const login=(userData, setIsLoading)=>{
+export const login=(userData, setIsLoading, toast)=>{
   api.post('/login', userData)
   .then(res=>{
     window.localStorage.setItem('user-token',res.data.token)
@@ -31,8 +31,8 @@ export const login=(userData, setIsLoading)=>{
     window.location.replace('/analytics')
   })
   .catch(error=>{
-    if(error.response.message) alert(error.response.message);
-     if(error.response.data.error) alert(error.response.data.error)
+    if(error.response.message) toast.error(error.response.message);
+     if(error.response.data.error) toast.error(error.response.data.error)
     setIsLoading(false)
   })
 }
