@@ -21,7 +21,7 @@
         position: sticky;
         top: 0;
         height: 100vh;
-        padding-top: 10% ;
+        // padding-top: 10% ;
         
         .desktoprel{
             position: relative;
@@ -52,7 +52,9 @@
     }
 }
 
-
+::-webkit-input-placeholder { 
+        color:#E0E0E0;
+      }
 .innerpageright{
     // .bullet
     // {

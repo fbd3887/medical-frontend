@@ -105,30 +105,30 @@ export default function Contact() {
                 <div className="row">
                   <label>聯繫原因 （可複選）</label>
                 </div>
-                <div className="row mt-2">
+                <div className="row mt-3">
                 
                     <div className="col-4 col-md-3
-                       labelfontsmall">
+                       labelfontsmall pb-3">
                       <input id="inside" type="checkbox" checked />&nbsp;
                       <label for="inside" >想更了解AMH</label>
                     </div>
-                    <div className="col-3 labelfontsmall">
+                    <div className="col-3 labelfontsmall pb-3">
                       <input id="inside" type="checkbox" />&nbsp;
                       <label for="inside" >想凍卵</label>
                     </div>
-                    <div className="col-3  labelfontsmall">
+                    <div className="col-3  labelfontsmall pb-3">
                       <input id="inside" type="checkbox" />&nbsp;
                       <label for="inside" >想懷孕</label>
                     </div>
-                    <div className="col-3  labelfontsmall">
+                    <div className="col-3  labelfontsmall pb-3">
                       <input id="inside" type="checkbox" />&nbsp;
                       <label for="inside" >找專業醫生</label>
                     </div>
-                    <div className="col-2 ms-3 ms-md-0  mt-md-2  labelfontsmall">
+                    <div className="col-2 ms-3 ms-md-0  mt-md-2  labelfontsmall pb-3">
                       <input id="inside" type="checkbox" />&nbsp;
                       <label for="inside" >其他</label>
                     </div>
-                    <div className="col-md-10 innerFieldDiv ">
+                    <div className="col-md-10 innerFieldDiv pb-3">
                         <input className="form-control" type="email" placeholder="請填寫其他原因" />
                     </div>
                 </div>
