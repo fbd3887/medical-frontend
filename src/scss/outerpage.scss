@@ -30,6 +30,8 @@
     font-size: 1rem;
 }
 
+
+
 .otherDayinput {
     width: 75px;
     opacity: 1 !important;
@@ -37,7 +39,20 @@
     outline: none;
     border-bottom: 1px solid gray;
 }
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #E0E0E0;
+    opacity: 1; /* Firefox */
+  }
 
+ input[type=checkbox]:checked {
+  /*CSS after CHECKED*/
+  color: #ffd369;
+}
+.labelfontsmall
+{
+    font-size:smaller;
+    white-space: nowrap;
+}
 .css-prp
 {
   color: #d3755f;
