@@ -165,15 +165,12 @@ export default function Contact() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-8 offset-md-2 text-center">
-                <button className="btn contactbtn">馬上聯繫</button>
-            <div className='row'>
-              <div className='col-md-8 offset-md-2 text-center'>
-                <button className='btn contactbtn'>馬上聯繫</button>
+              <div className="col-md-8  offset-md-2 text-center">
+                <button className="btn   contactbtn">馬上聯繫</button>
               </div>
             </div>
-          </div>
-        </div>
+            </div>
+      </div>
       </div>
       <h1 className='text-center'>Clinic 合作診所</h1>
 
@@ -225,7 +222,7 @@ export default function Contact() {
         </div>
       </div>
     </div>
-    </div>
-    </div>
+   
+  
   )
 }
