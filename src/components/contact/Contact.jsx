@@ -193,19 +193,10 @@ export default function Contact() {
                   ></iframe>
                 </div>
               </div>
-<<<<<<< HEAD
               <div className="col-md-5  ">
                 <div className="row mt-5 ms-2">
                   <div className="d-flex p-2 justify-content-md-center">
                       <h3> 華育生殖醫學中心</h3>
-=======
-              <div className='col-md-5'>
-                <div className='row'>
-                  <label>生日</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input className='form-control' type='text' />
->>>>>>> 5d65d911eae276819d57fec360500cd4baa90996
                   </div>
                 </div>
                 <div className="row ms-1 mt-2">
@@ -233,6 +224,8 @@ export default function Contact() {
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   )
 }
