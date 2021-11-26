@@ -28,7 +28,7 @@ useEffect(() => {
 }, [errors]);
 
 useEffect(() => {
-  getUserData()
+  window.localStorage.getItem("user-token") !== null  && getUserData()
 }, [])
 
 const handleLogin =()=>{
