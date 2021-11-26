@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
 import '../../scss/innerpages.scss'
 import Sidebar from './Sidebar'
+import { Redirect } from 'react-router-dom';
 import Graph1 from '../../images/graph1.png'
 import Graph2 from '../../images/graph2.png'
 import Graph3 from '../../images/graph3.png'
@@ -43,6 +45,8 @@ const data = {
 };
 export default function Analytics(props) {
 
+  const user = useSelector(state => state.user)
+
   useEffect(() => {
     console.log(props)
     if (window.localStorage.getItem('user-token')) {
@@ -51,6 +55,10 @@ export default function Analytics(props) {
       window.location.replace('/')
     }
   }, [])
+
+  if(!user){
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="container-fluid">

@@ -1,5 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import {getUser} from '../api/axios'
+import { setLoggedUser } from '../redux/actions/userActions'
+
 import Contact from '../components/contact/Contact'
 import AccountInformation from '../components/innerpages/AccountInformation'
 import AiDoctor from '../components/innerpages/AiDoctor'
@@ -11,7 +15,16 @@ import Login from '../components/login/Login'
 import Register from '../components/register/Register'
 
 export const RoutesAndRouter = () => {
+  const dispatch = useDispatch();
   //let history = useHistory();
+  const user = useSelector(state => state.user)
+  useEffect(async()=>{
+    let res = await getUser();
+    if(res && res.data.user[0]){
+     dispatch(setLoggedUser(res.data.user[0]))
+    }
+  }, [])
+  
   return (
     <Router>
       <Switch>

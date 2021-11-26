@@ -7,6 +7,12 @@ const api = axios.create({
    }
 });
 
+const authHeader=()=>{
+  let user = JSON.parse(window.localStorage.getItem('user-token'))
+  if(user && user!==''){
+    return { headers: {"Authorization" : `Bearer ${user}`} }
+  }else return
+}
 
 export const register=(userData, setIsLoading, toast)=>{
  api.post('/register', userData)
@@ -24,17 +30,17 @@ export const register=(userData, setIsLoading, toast)=>{
 }
 
 export const login=(userData, setIsLoading, toast)=>{
-  api.post('/login', userData)
-  .then(res=>{
-    window.localStorage.setItem('user-token',res.data.token)
-    setIsLoading(false);
-    window.location.replace('/analytics')
-  })
+  return api.post('/login', userData)
   .catch(error=>{
     if(error.response.message) toast.error(error.response.message);
      if(error.response.data.error) toast.error(error.response.data.error)
     setIsLoading(false)
   })
+}
+
+export const getUser=()=>{
+  return  api.get('/user', authHeader())
+  .catch(err=>console.log(err))  
 }
 
 export default api;
