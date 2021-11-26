@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
+import { useDispatch , useSelector} from 'react-redux'
 import '../../scss/outerpage.scss'
 import logo2 from '../../images/logo2.png'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { validateLogin } from '../../utils/validation'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import {login} from '../../api/axios'
+import {login, getUser} from '../../api/axios'
+import { setLoggedUser } from '../../redux/actions/userActions'
 
 export default function Login() {
 const [email, setEmail] = useState('');
@@ -13,7 +15,8 @@ const [password, setPassword] = useState('');
 const [isLoading, setIsLoading] = useState(false)
 const [errors, setErrors] = useState({})
 const [isSubmitted, setIsSubmitted] = useState(false)
-
+const dispatch =useDispatch()
+const user = useSelector(state => state.user)
 useEffect(() => {
   if (Object.keys(errors).length === 0 && isSubmitted) {
     loginAPI();
@@ -24,6 +27,10 @@ useEffect(() => {
   }
 }, [errors]);
 
+useEffect(() => {
+  getUserData()
+}, [])
+
 const handleLogin =()=>{
   setErrors(validateLogin({
     "email":email,
@@ -32,15 +39,29 @@ const handleLogin =()=>{
   setIsSubmitted(true)
 }
 
-const loginAPI=()=>{  
+const loginAPI=async()=>{  
   setIsLoading(true)
-  login({
+  const response = await login({
     "email_id": email,
     "password": password
-  }, setIsLoading,
-  toast)
-}
+  }, setIsLoading, toast)
 
+  if(response && response.data.token){
+    let token = response.data.token
+    window.localStorage.setItem('user-token',JSON.stringify(token));
+    getUserData()
+    setIsLoading(false);
+  }
+}
+const getUserData=async()=>{
+  const response = await getUser()
+  if(response){
+  dispatch(setLoggedUser(response.data.user[0]
+    ))
+  window.location.replace('/analytics')
+  }
+}
+console.log(user)
   return (
     <div className="loginBackground">
       <div className="row min-vh-100 login-contaner">
