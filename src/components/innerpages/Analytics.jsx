@@ -49,8 +49,8 @@ export default function Analytics(props) {
           <div className="row">
             <div className="col-md-10 offset-md-1">
               <div className="heading ">
-                  <h1 >AI Doctor &nbsp;&nbsp;
-                      <br className="d-sm-none "/><span className="headspan">AI 醫生診斷</span>
+                  <h1 >Result Graphs &nbsp;&nbsp;
+                      <br className="d-sm-none "/><span className="headspan">比較圖</span>
                   </h1>
               </div>
               <div className="row mt-5 align-items-center">
@@ -58,7 +58,7 @@ export default function Analytics(props) {
                     <div className="formOptionCard  p-4">
                         <div className="row ">
                             <div className="col-12 d-flex justify-content-center">
-                                <h4>林慧珍  AMH紀錄</h4>
+                                <h4> 卵巢年齡為 35 歲</h4>
                             </div>
                         </div>
                         <div className="row offset-md-1 mt-2">
