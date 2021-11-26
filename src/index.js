@@ -6,6 +6,7 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

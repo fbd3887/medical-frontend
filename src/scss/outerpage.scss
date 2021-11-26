@@ -30,6 +30,8 @@
     font-size: 1rem;
 }
 
+
+
 .otherDayinput {
     width: 75px;
     opacity: 1 !important;
@@ -37,7 +39,20 @@
     outline: none;
     border-bottom: 1px solid gray;
 }
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #E0E0E0;
+    opacity: 1; /* Firefox */
+  }
 
+ input[type=checkbox]:checked {
+  /*CSS after CHECKED*/
+  color: #ffd369;
+}
+.labelfontsmall
+{
+    font-size:smaller;
+    white-space: nowrap;
+}
 .css-prp
 {
   color: #d3755f;
@@ -140,7 +155,8 @@
     .contactbtn{
         border: 1px solid #E8927C;
         border-radius: 50px;
-        color: #E8927C;
+        background-color: #E8927C;
+        color: #fff;
         margin: 0 auto;
     }
     .ContctOptionCard{
@@ -234,6 +250,9 @@
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .desktopOuterHide{
         display: inline-block;
+    }
+    .contactbtn{
+        width:100%;
     }
     .mobileOuterHide{
         display: none;
