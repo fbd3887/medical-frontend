@@ -6,6 +6,7 @@ import '../../scss/outerpage.scss'
 import { validateRegister } from '../../utils/validation'
 import {renderDays, renderMonths, renderYears} from '../../utils/misc'
 import { register } from '../../api/axios'
+import { LIFE_CYCLE,BLEED, CRAMPS, PREGNANT_LIFECYCLE } from '../../utils/constants'
 
 export default function Register() {
   const initialValues = {
@@ -440,7 +441,7 @@ export default function Register() {
                       className='d-flex flex-wrap'
                     >
                       <label className='con2'>
-                        <span>never pregnant and don not want to pregnant</span>
+                        <span>{PREGNANT_LIFECYCLE[0]}</span>
                         <input
                           type='radio'
                           name='pregCycle'
@@ -451,7 +452,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con2'>
-                        <span> Never pregnant but want to get pregnant</span>
+                        <span>{PREGNANT_LIFECYCLE[1]}</span>
                         <input
                           type='radio'
                           name='pregCycle'
@@ -494,7 +495,7 @@ export default function Register() {
                     <h5>Do you experience cramps or pain during your period</h5>
                     <div className='d-flex flex-wrap'>
                       <label className='con3'>
-                        <span>Yes, experience pain</span>
+                        <span>{CRAMPS[0]}]</span>
                         <input
                           type='radio'
                           name='crampCycle'
@@ -505,7 +506,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con3'>
-                        <span>No, do not experience pain</span>
+                        <span>{CRAMPS[1]}</span>
                         <input
                           type='radio'
                           name='crampCycle'
@@ -525,7 +526,7 @@ export default function Register() {
                     <h5>How much do you bleed</h5>
                     <div className='d-flex flex-wrap'>
                       <label className='con4'>
-                        <span>Heavy bleeding</span>
+                        <span>{BLEED[0]}</span>
                         <input
                           type='radio'
                           name='bleedCycle'
@@ -536,7 +537,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con4'>
-                        <span>normal bleeding</span>
+                        <span>{BLEED[1]}</span>
                         <input
                           type='radio'
                           name='bleedCycle'
@@ -547,7 +548,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con4'>
-                        <span>Light bleeding</span>
+                        <span>{BLEED[2]}</span>
                         <input
                           type='radio'
                           name='bleedCycle'
@@ -567,7 +568,7 @@ export default function Register() {
                     <h5>Current lifestyle(Select alll application)</h5>
                     <div className='d-flex flex-wrap'>
                       <label className='con5'>
-                        <span>Smooking</span>
+                        <span>{LIFE_CYCLE[0]}</span>
                         <input
                           type='radio'
                           name='lifeCycle'
@@ -578,7 +579,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con5'>
-                        <span>Alcohol consumption</span>
+                        <span>{LIFE_CYCLE[1]}</span>
                         <input
                           type='radio'
                           name='lifeCycle'
@@ -589,7 +590,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con5'>
-                        <span>Frequently stayings Up</span>
+                        <span>{LIFE_CYCLE[2]}</span>
                         <input
                           type='radio'
                           name='lifeCycle'
@@ -600,7 +601,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con5'>
-                        <span>Feeling stressed</span>
+                        <span>{LIFE_CYCLE[3]}</span>
                         <input
                           type='radio'
                           name='lifeCycle'
@@ -611,7 +612,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con5'>
-                        <span>Feeling unstressed</span>
+                        <span>{LIFE_CYCLE[4]}</span>
                         <input
                           type='radio'
                           name='lifeCycle'
@@ -622,7 +623,7 @@ export default function Register() {
                         <span className='checkmark'></span>
                       </label>
                       <label className='con5'>
-                        <span>None of the above</span>
+                        <span>{LIFE_CYCLE[5]}</span>
                         <input
                           type='radio'
                           name='lifeCycle'
