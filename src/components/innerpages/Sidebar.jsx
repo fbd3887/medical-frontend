@@ -12,6 +12,11 @@ import MenuIcon from '../../images/mobilemenuicon.png'
 import '../../scss/innerpages.scss'
 
 export default function Sidebar() {
+
+  const logout=()=>{
+    window.localStorage.removeItem('user-token');
+    window.location.href='/'
+  }
   return (
     <div className="col-md-2 sidebar  ">
       <div className="row mobileHide desktopst">
@@ -56,11 +61,9 @@ export default function Sidebar() {
             </Link>
           </div>
           <div className="col-md-12 logoutdiv">
-            <Link to="/">
-              <p>
+              <p onClick={logout}>
                 <img src={LogoutIcon} alt="" /> 登出
               </p>
-            </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {useSelector} from 'react-redux'
 import Sidebar from '../innerpages/Sidebar'
 import ai_graph from '../../images/ai_graph.png'
 import '../../scss/innerpages.scss'
@@ -7,26 +8,36 @@ import age from '../../images/age.png'
 import ahm from '../../images/ahm.png'
 import oval from '../../images/oval.png'
 import AiDoctorCard from './AiDoctorCard'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import {Line, XAxis, YAxis,ReferenceLineProps, Tooltip,CartesianGrid,LineChart,ResponsiveContainer, ReferenceLine} from 'recharts'
 export default function AiDoctor(){
-    const data = [
-        {
-          name: 20,
-          ahm: 3.75,
-         
-        },
-        {
-          name: 32,
-          ahm: 3.5,
-          amt: 900,
-        },
-        {
-          name: 35,          
-          ahm: 3,
-          
-        }
-      ];
+
+  const user = useSelector(state => state.user)
+  const [ageData, setAgeData]= useState([
+    {
+      name: user.biological_age,
+      ahm: user.amh_level,
+     
+    },
+    {
+      name: user.overy_age,
+      ahm: user.amh_level,
+      amt: 900,
+    }
+  ])
+
+  useEffect(() => {
+    if (window.localStorage.getItem('user-token')) {
+
+    } else {
+      window.location.replace('/')
+    }
+  }, [])
+
+  if(!user){
+    return <Redirect to="/" />;
+  }
+
     return(        
         <div className="container-fluid">
             <div className="row">
@@ -72,7 +83,7 @@ export default function AiDoctor(){
                                                         <LineChart
                                                             width={500}
                                                             height={200}
-                                                            data={data}
+                                                            data={ageData}
                                                             margin={{
                                                             top: 10,
                                                             right: 30,

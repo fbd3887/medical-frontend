@@ -19,9 +19,11 @@ export const RoutesAndRouter = () => {
   //let history = useHistory();
   const user = useSelector(state => state.user)
   useEffect(async()=>{
+    if(window.localStorage.getItem("user-token") !== null){
     let res = await getUser();
     if(res && res.data.user[0]){
      dispatch(setLoggedUser(res.data.user[0]))
+    }
     }
   }, [])
   

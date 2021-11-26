@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import '../../scss/innerpages.scss'
 import Sidebar from './Sidebar'
 import { Redirect } from 'react-router-dom';
@@ -15,26 +15,21 @@ import {Line, XAxis, YAxis,ReferenceLineProps, Tooltip,CartesianGrid,LineChart,R
 
 import Chart from 'chart.js/auto'
 
-const data = [
-  {
-    name: 20,
-    ahm: 3.75,
-   
-  },
-  {
-    name: 32,
-    ahm: 3.5,
-    amt: 900,
-  },
-  {
-    name: 35,          
-    ahm: 3,
-    
-  }
-];
 export default function Analytics(props) {
 
   const user = useSelector(state => state.user)
+  const [ageData, setAgeData]= useState([
+    {
+      name: user.biological_age,
+      ahm: user.amh_level,
+     
+    },
+    {
+      name: user.overy_age,
+      ahm: user.amh_level,
+      amt: 900,
+    }
+  ])
 
   useEffect(() => {
     console.log(props)
@@ -77,7 +72,7 @@ export default function Analytics(props) {
                                     <LineChart
                                         width={500}
                                         height={200}
-                                        data={data}
+                                        data={ageData}
                                         margin={{
                                         top: 10,
                                         right: 30,
