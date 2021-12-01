@@ -72,6 +72,7 @@ export default function Register() {
       menstrualCycle,
       crampCycle,
       bleedCycle,
+      name,
     } = registerForm
     setIsLoading(true)
     register(
@@ -91,7 +92,8 @@ export default function Register() {
         "biological_age": biologicalAge,
         "overy_age": overyAge,
         "amh_level": amhLevel,
-        "finance": finance
+        "finance": finance,
+        "user_name": name,
       },
       setIsLoading,
       toast
