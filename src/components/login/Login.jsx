@@ -61,7 +61,7 @@ const getUserData=async()=>{
   window.location.replace('/analytics')
   }
 }
-console.log(user)
+
   return (
     <div className="loginBackground">
       <div className="row min-vh-100 login-contaner">
