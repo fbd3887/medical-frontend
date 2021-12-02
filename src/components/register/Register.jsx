@@ -10,17 +10,17 @@ import { LIFE_CYCLE,BLEED, CRAMPS, PREGNANT_LIFECYCLE } from '../../utils/consta
 
 export default function Register() {
   const initialValues = {
-    email: 'test1@gmail.com',
-    password: '12345678',
-    phoneNumber: '12345678910',
+    email: '',
+    password: '',
+    phoneNumber: '',
     occupation: '-1',
     finance: '10000',
     dobDay: 'DD',
     dobMonth: 'MM',
     dobYear: 'YYYY',
     education: '-1',
-    name: 'Mubeen',
-    idNumber: 12344,
+    name: '',
+    idNumber: '',
     biologicalAge: '',
     overyAge: '',
     amhLevel: '',
@@ -29,7 +29,6 @@ export default function Register() {
     menstrualCycle:'20',
     crampCycle:'0',
     bleedCycle:'0',
-
   }
   const [registerForm, setRegisterForm] = useState(initialValues)
   const [errors, setErrors] = useState({})
