@@ -1,43 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import {useSelector} from 'react-redux'
 import 'react-toastify/dist/ReactToastify.css'
 import Outerheader from '../outerheader/OuterHeader'
 import '../../scss/outerpage.scss'
-import { validateRegister } from '../../utils/validation'
+import { validateUserData } from '../../utils/validation'
 import {renderDays, renderMonths, renderYears} from '../../utils/misc'
-import { register } from '../../api/axios'
+import { updateUser } from '../../api/axios'
 import { LIFE_CYCLE,BLEED, CRAMPS, PREGNANT_LIFECYCLE } from '../../utils/constants'
 
-export default function Register() {
-  const initialValues = {
-    email: '',
-    password: '',
-    phoneNumber: '',
-    occupation: '-1',
-    finance: '10000',
-    dobDay: 'DD',
-    dobMonth: 'MM',
-    dobYear: 'YYYY',
-    education: '-1',
-    name: '',
-    idNumber: '',
-    biologicalAge: '',
-    overyAge: '',
-    amhLevel: '',
-    lifeCycle: '0',
-    pregCycle:'0',
-    menstrualCycle:'20',
-    crampCycle:'0',
-    bleedCycle:'0',
-  }
-  const [registerForm, setRegisterForm] = useState(initialValues)
+export default function EditProfile() {
+  const user = useSelector(state => state.user)
+  const [updateUserForm, setUpdateUserForm] = useState({})
   const [errors, setErrors] = useState({})
   const [otherOccupation, setOtherOccupation] = useState('')
   const [isloading, setIsLoading] = useState(false);
   const [isSubmitted, setSubmitted] = useState(false)
 
-  const handleRegister = () => {
-  setErrors(validateRegister(registerForm));
+  const handleUpdateProfile = () => {
+  setErrors(validateUserData(updateUserForm));
   setSubmitted(true)
   }
 
@@ -53,8 +34,6 @@ export default function Register() {
 
   const registerNewUser=()=>{
     const {
-      email,
-      password,
       phoneNumber,
       occupation,
       finance,
@@ -62,7 +41,6 @@ export default function Register() {
       dobMonth,
       dobYear,
       education,
-      idNumber,
       biologicalAge,
       overyAge,
       amhLevel,
@@ -71,18 +49,14 @@ export default function Register() {
       menstrualCycle,
       crampCycle,
       bleedCycle,
-      name,
-    } = registerForm
+    } = updateUserForm
     setIsLoading(true)
-    register(
+    updateUser(
       {
-        "email_id": email,
-        "password": password,
         "phone_num": phoneNumber,
         "occupation": occupation,
         "dob": `${dobYear}-${dobMonth}-${dobDay}`,
         "education": education,
-        'id_number':idNumber,
         "menstrual_cycle": Number(menstrualCycle),
         "bleed_cycle": Number(bleedCycle),
         "cramp_cycle": Number(crampCycle),
@@ -92,7 +66,6 @@ export default function Register() {
         "overy_age": overyAge,
         "amh_level": amhLevel,
         "finance": finance,
-        "user_name": name,
       },
       setIsLoading,
       toast
@@ -103,23 +76,47 @@ export default function Register() {
   const handleSetOccupation = (e) => {
     const { name, value } = e.target
     if (e.target.value !== 'other') {
-      setRegisterForm({ ...registerForm, occupation: value })
+      setUpdateUserForm({ ...updateUserForm, occupation: value })
       setOtherOccupation(false)
     } else {
       setOtherOccupation(true)
-      setRegisterForm({ ...registerForm, occupation: '' })
+      setUpdateUserForm({ ...updateUserForm, occupation: '' })
     }
   }
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setRegisterForm({ ...registerForm, [name]: value })
+    setUpdateUserForm({ ...updateUserForm, [name]: value })
   }
+
+  useEffect(() => {
+    if(Object.keys(user).length !== 0){
+      let dob = user.dob.split("-")
+      const userData = {
+        phoneNumber:user.phone_num,
+        occupation:user.occupation,
+        finance: user.finance,
+        dobDay:dob[2],
+        dobMonth:dob[1],
+        dobYear:dob[0],
+        education:user.education,
+        biologicalAge:user.biological_age,
+        overyAge:user.overy_age,
+        amhLevel:user.amh_level,
+        lifeCycle:`${user.life_cycle}`,
+        pregCycle:`${user.preg_cycle}`,
+        menstrualCycle:`${user.menstrual_cycle}`,
+        crampCycle:`${user.cramp_cycle}`,
+        bleedCycle:`${user.bleed_cycle}`,
+      }  
+      setUpdateUserForm({...userData})
+    }
+  }, [user])
 
   return (
     <div className='outerPage'>
       <Outerheader />
-      <h1 className='text-center'>Register 註冊</h1>
+      <h1 className='text-center'>Update Profile</h1>
       <div className='row'>
         <div className='col-md-8 offset-md-2 paddingLeft25'>
           <div className='treeOptionTab'>
@@ -129,7 +126,7 @@ export default function Register() {
                 className='form-control'
                 type='text'
                 name='biologicalAge'
-                value={registerForm.biologicalAge}
+                value={updateUserForm.biologicalAge}
                 onChange={handleChange}
               />
               歲
@@ -142,7 +139,7 @@ export default function Register() {
                 type='text'
                 className='form-control'
                 name='overyAge'
-                value={registerForm.overyAge}
+                value={updateUserForm.overyAge}
                 onChange={handleChange}
               />
               歲
@@ -155,7 +152,7 @@ export default function Register() {
                 type='text'
                 className='form-control'
                 name='amhLevel'
-                value={registerForm.amhLevel}
+                value={updateUserForm.amhLevel}
                 onChange={handleChange}
               />
             </div>
@@ -165,27 +162,6 @@ export default function Register() {
       <div className='row'>
         <div className='col-md-8 offset-md-2'>
           <div className='formOptionCard'>
-            <h3>基本資料</h3>
-            <div className='row'>
-              <div className='col-md-8'>
-                {/* Name  */}
-                <div className='row'>
-                  <label>姓名</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      placeholder='Name'
-                      type='text'
-                      name='name'
-                      value={registerForm.name}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Date of Birth */}
             <div className='row'>
               <div className='col-md-8'>
@@ -197,7 +173,7 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       name='dobYear'
-                      value={registerForm.dobYear}
+                      value={updateUserForm.dobYear}
                       onChange={handleChange}
                       dangerouslySetInnerHTML={{ __html: renderYears() }}
                     ></select>
@@ -207,7 +183,7 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       name='dobMonth'
-                      value={registerForm.dobMonth}
+                      value={updateUserForm.dobMonth}
                       onChange={handleChange}
                       dangerouslySetInnerHTML={{ __html: renderMonths() }}
                     ></select>
@@ -217,30 +193,10 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       name='dobDay'
-                      value={registerForm.dobDay}
+                      value={updateUserForm.dobDay}
                       onChange={handleChange}
                       dangerouslySetInnerHTML={{ __html: renderDays() }}
                     ></select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Id Number */}
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <label>身份證號碼</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='number'
-                      placeholder='ID Number'
-                      name='idNumber'
-                      value={registerForm.idNumber}
-                      onChange={handleChange}
-                    />
                   </div>
                 </div>
               </div>
@@ -258,45 +214,7 @@ export default function Register() {
                       type='text'
                       placeholder='Phone Number'
                       name='phoneNumber'
-                      value={registerForm.phoneNumber}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className='col-md-4'>
-                <div className='row'>
-                  <label>Email</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='email'
-                      placeholder='Email'
-                      name='email'
-                      value={registerForm.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Password */}
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <label>Password</label>
-                  <br />
-                  <div className='col-md-12 innerFieldDiv'>
-                    <input
-                      className='form-control'
-                      type='password'
-                      placeholder='Password'
-                      name='password'
-                      value={registerForm.password}
+                      value={updateUserForm.phoneNumber}
                       onChange={handleChange}
                     />
                   </div>
@@ -315,6 +233,8 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       onChange={handleSetOccupation}
+                      name='occupation'
+                      value={updateUserForm.occupation}
                     >
                       <option selected value='-1'>-Please Select</option>
                       <option value='Government Service'>Govt Servant</option>
@@ -331,7 +251,7 @@ export default function Register() {
                             type='text'
                             placeholder='Plese spacify'
                             name='occupation'
-                            value={registerForm.occupation}
+                            value={updateUserForm.occupation}
                             onChange={handleChange}
                           />
                         </div>
@@ -353,9 +273,8 @@ export default function Register() {
                       className='form-select'
                       aria-label='Default select example'
                       name='education'
-                      value={registerForm.education}
+                      value={updateUserForm.education}
                       onChange={handleChange}
-                      // onChange={(e) => setEducation(e.target.value)}
                     >
                       <option selected value='-1'>-Please Select</option>
                       <option value='Business'>Business</option>
@@ -383,7 +302,7 @@ export default function Register() {
                           type='radio'
                           value='20'
                           name='menstrualCycle'
-                          checked={registerForm.menstrualCycle === '20'}
+                          checked={updateUserForm.menstrualCycle === '20'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -394,7 +313,7 @@ export default function Register() {
                           type='radio'
                           value='30'
                           name='menstrualCycle'
-                          checked={registerForm.menstrualCycle === '30'}
+                          checked={updateUserForm.menstrualCycle === '30'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -406,8 +325,8 @@ export default function Register() {
                           value=''
                           name='menstrualCycle'
                           checked={
-                            registerForm.menstrualCycle !== '20' &&
-                            registerForm.menstrualCycle !== '30'
+                            updateUserForm.menstrualCycle !== '20' &&
+                            updateUserForm.menstrualCycle !== '30'
                           }
                           onChange={handleChange}
                         />
@@ -417,14 +336,14 @@ export default function Register() {
                           type='text'
                           name='menstrualCycle'
                           disabled={
-                            registerForm.menstrualCycle === '20' ||
-                            registerForm.menstrualCycle === '30'
+                            updateUserForm.menstrualCycle === '20' ||
+                            updateUserForm.menstrualCycle === '30'
                           }
                           value={
-                            registerForm.menstrualCycle === '20' ||
-                            registerForm.menstrualCycle === '30'
+                            updateUserForm.menstrualCycle === '20' ||
+                            updateUserForm.menstrualCycle === '30'
                               ? ''
-                              : registerForm.menstrualCycle
+                              : updateUserForm.menstrualCycle
                           }
                           onChange={handleChange}
                         />
@@ -447,7 +366,7 @@ export default function Register() {
                           type='radio'
                           name='pregCycle'
                           value={0}
-                          checked={registerForm.pregCycle === '0'}
+                          checked={updateUserForm.pregCycle === '0'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -458,7 +377,7 @@ export default function Register() {
                           type='radio'
                           name='pregCycle'
                           value={1}
-                          checked={registerForm.pregCycle === '1'}
+                          checked={updateUserForm.pregCycle === '1'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -470,17 +389,17 @@ export default function Register() {
                           name='pregnant-cycle'
                           value={2}
                           name='pregCycle'
-                          checked={registerForm.pregCycle !== '0' && registerForm.pregCycle !== '1'}
+                          checked={updateUserForm.pregCycle !== '0' && updateUserForm.pregCycle !== '1'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
                         <input
                           className='otherDayinput'
                           type='number'
-                          disabled={registerForm.pregCycle === '0' || registerForm.pregCycle === '1'}
+                          disabled={updateUserForm.pregCycle === '0' || updateUserForm.pregCycle === '1'}
                           name='pregCycle'
                           value={
-                            registerForm.pregCycle === '0' || registerForm.pregCycle === '1' ? '' : registerForm.pregCycle
+                            updateUserForm.pregCycle === '0' || updateUserForm.pregCycle === '1' ? '' : updateUserForm.pregCycle
                           }
                           onChange={handleChange}
                         />
@@ -501,7 +420,7 @@ export default function Register() {
                           type='radio'
                           name='crampCycle'
                           value={0}
-                          checked={registerForm.crampCycle === '0'}
+                          checked={updateUserForm.crampCycle === '0'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -512,7 +431,7 @@ export default function Register() {
                           type='radio'
                           name='crampCycle'
                           value={1}
-                          checked={registerForm.crampCycle === '1'}
+                          checked={updateUserForm.crampCycle === '1'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -532,7 +451,7 @@ export default function Register() {
                           type='radio'
                           name='bleedCycle'
                           value={0}
-                          checked={registerForm.bleedCycle === '0'}
+                          checked={updateUserForm.bleedCycle === '0'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -543,7 +462,7 @@ export default function Register() {
                           type='radio'
                           name='bleedCycle'
                           value={1}
-                          checked={registerForm.bleedCycle === '1'}
+                          checked={updateUserForm.bleedCycle === '1'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -554,7 +473,7 @@ export default function Register() {
                           type='radio'
                           name='bleedCycle'
                           value={2}
-                          checked={registerForm.bleedCycle === '2'}
+                          checked={updateUserForm.bleedCycle === '2'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -574,7 +493,7 @@ export default function Register() {
                           type='radio'
                           name='lifeCycle'
                           value={0}
-                          checked={registerForm.lifeCycle === '0'}
+                          checked={updateUserForm.lifeCycle === '0'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -585,7 +504,7 @@ export default function Register() {
                           type='radio'
                           name='lifeCycle'
                           value={1}
-                          checked={registerForm.lifeCycle === '1'}
+                          checked={updateUserForm.lifeCycle === '1'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -596,7 +515,7 @@ export default function Register() {
                           type='radio'
                           name='lifeCycle'
                           value={2}
-                          checked={registerForm.lifeCycle === '2'}
+                          checked={updateUserForm.lifeCycle === '2'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -607,7 +526,7 @@ export default function Register() {
                           type='radio'
                           name='lifeCycle'
                           value={3}
-                          checked={registerForm.lifeCycle === '3'}
+                          checked={updateUserForm.lifeCycle === '3'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -618,7 +537,7 @@ export default function Register() {
                           type='radio'
                           name='lifeCycle'
                           value={4}
-                          checked={registerForm.lifeCycle === '4'}
+                          checked={updateUserForm.lifeCycle === '4'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -629,7 +548,7 @@ export default function Register() {
                           type='radio'
                           name='lifeCycle'
                           value={5}
-                          checked={registerForm.lifeCycle === '5'}
+                          checked={updateUserForm.lifeCycle === '5'}
                           onChange={handleChange}
                         />
                         <span className='checkmark'></span>
@@ -642,8 +561,8 @@ export default function Register() {
           </div>
           <div className='row'>
             <div className='col-md-10 loginBackground'>
-              <button onClick={handleRegister} className='btn'>
-                {isloading ? 'Loading...' : 'Register'}
+              <button onClick={handleUpdateProfile} className='btn'>
+                {isloading ? 'Loading...' : 'Update'}
               </button>
             </div>
           </div>

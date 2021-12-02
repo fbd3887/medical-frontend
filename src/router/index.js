@@ -13,6 +13,7 @@ import Discount from '../components/innerpages/Discount'
 import Education from '../components/innerpages/Education'
 import Login from '../components/login/Login'
 import Register from '../components/register/Register'
+import EditProfile from '../components/editprofile/EditProfile'
 
 export const RoutesAndRouter = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const RoutesAndRouter = () => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/edit-profile" component={EditProfile} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/aidoctor" component={AiDoctor}/>
         <Route exact path="/aidoctorform" component={AiDoctorForm}/>
