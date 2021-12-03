@@ -42,4 +42,21 @@ export const getUser = () => {
   return api.get('/user', authHeader()).catch((err) => console.log(err))
 }
 
+export const updateUser = (userData, setIsLoading, toast) => {
+  api
+    .post('/updateUser', userData, authHeader())
+    .then((res) => {
+      if (res.status === 200) {
+        window.location.replace('/account')
+      }
+      setIsLoading(false)
+    })
+    .catch((error) => {
+      console.log(error.response)
+      if (error.response.message) toast.error(error.response.message)
+      if (error.response.data.error) toast.error(error.response.data.error)
+      setIsLoading(false)
+    })
+}
+
 export default api

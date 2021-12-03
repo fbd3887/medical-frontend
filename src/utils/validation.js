@@ -79,6 +79,48 @@ export const validateLogin=({email, password})=>{
   return errors;
 }
 
+export const validateUserData = (form) => {
+  const {
+    phoneNumber,
+    occupation,
+    finance,
+    dobDay,
+    dobMonth,
+    dobYear,
+    education,
+    biologicalAge,
+    overyAge,
+    amhLevel,
+    lifeCycle,
+    pregCycle,
+    menstrualCycle,
+    crampCycle,
+    bleedCycle,
+  } = form
+  let errors = {}
+
+  if(dobDay === 'DD' || dobMonth === 'MM' || dobYear === 'YYYY'){
+   errors.dob = 'Please select Date of birth'
+  }
+  if(education=== '-1'){
+   errors.education = 'Please select education'
+  }
+  if(occupation=== '-1'){
+   errors.occupation = 'Please select occupation'
+   }
+   if(!biologicalAge){
+   errors.biologicalAge = 'Please enter Biological Age'
+  }
+  if(!amhLevel){
+   errors.amhLevel = 'Please enter AMH Level'
+  }
+  if(!overyAge){
+   errors.overyAge = 'Please enter Overy Age'
+  }
+
+  return errors
+}
+
 function validateEmail(email) {
   let regxEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   if (email.match(regxEmail)) {
