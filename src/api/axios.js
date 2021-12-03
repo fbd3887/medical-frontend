@@ -1,46 +1,45 @@
 import axios from 'axios'
 
 const api = axios.create({
-   baseURL: 'https://2swtcczgla.execute-api.us-east-1.amazonaws.com/prod',
-   headers: {
-      'Content-type': 'application/json'
-   }
-});
+  baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
+  headers: {
+    'Content-type': 'application/json',
+  },
+})
 
-const authHeader=()=>{
+const authHeader = () => {
   let user = JSON.parse(window.localStorage.getItem('user-token'))
-  if(user && user!==''){
-    return { headers: {"Authorization" : `Bearer ${user}`} }
-  }else return
+  if (user && user !== '') {
+    return { headers: { Authorization: `Bearer ${user}` } }
+  } else return
 }
 
-export const register=(userData, setIsLoading, toast)=>{
- api.post('/register', userData)
- .then(res => {
-   if(res.status === 200){
-     window.location.replace('/')
-   }
-   setIsLoading(false)
- })
- .catch(error => {
-     if(error.response.message) toast.error(error.response.message);
-     if(error.response.data.error) toast.error(error.response.data.error)
-     setIsLoading(false)
- });
+export const register = (userData, setIsLoading, toast) => {
+  api
+    .post('/register', userData)
+    .then((res) => {
+      if (res.status === 200) {
+        window.location.replace('/')
+      }
+      setIsLoading(false)
+    })
+    .catch((error) => {
+      if (error.response.message) toast.error(error.response.message)
+      if (error.response.data.error) toast.error(error.response.data.error)
+      setIsLoading(false)
+    })
 }
 
-export const login=(userData, setIsLoading, toast)=>{
-  return api.post('/login', userData)
-  .catch(error=>{
-    if(error.response.message) toast.error(error.response.message);
-     if(error.response.data.error) toast.error(error.response.data.error)
+export const login = (userData, setIsLoading, toast) => {
+  return api.post('/login', userData).catch((error) => {
+    if (error.response.message) toast.error(error.response.message)
+    if (error.response.data.error) toast.error(error.response.data.error)
     setIsLoading(false)
   })
 }
 
-export const getUser=()=>{
-  return  api.get('/user', authHeader())
-  .catch(err=>console.log(err))  
+export const getUser = () => {
+  return api.get('/user', authHeader()).catch((err) => console.log(err))
 }
 
-export default api;
+export default api
