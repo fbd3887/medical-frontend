@@ -99,7 +99,7 @@ export const validateUserData = (form) => {
   } = form
   let errors = {}
 
-  if(dobDay === 'DD' || dobMonth === 'MM' || dobYear === 'YYYY'){
+  if(dobDay == '' || dobMonth == '' || dobYear == ''){
    errors.dob = 'Please select Date of birth'
   }
   if(education=== '-1'){
@@ -117,6 +117,9 @@ export const validateUserData = (form) => {
   if(!overyAge){
    errors.overyAge = 'Please enter Overy Age'
   }
+  if(!phoneNumber){
+    errors.phoneNumber = 'Please enter your phone number'
+   }
 
   return errors
 }

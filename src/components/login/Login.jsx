@@ -85,7 +85,7 @@ const getUserData=async()=>{
               <div className="innerFieldDiv">
                 <label>EMAIL</label>
                 <br />
-                <input type="email"  value={email} onChange={(e)=>setEmail(e.target.value)} />
+                <input type="email"  value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email'/>
               </div>
             </div>
             <div className="loginFeild">
@@ -93,7 +93,7 @@ const getUserData=async()=>{
                 <label>
                   PASSWORD <span className="forgetLogin">FORGET?</span>
                 </label>
-                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
               </div>
             </div>
             {/* <Link to="/analytics"> */}

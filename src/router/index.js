@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {getUser} from '../api/axios'
 import { setLoggedUser } from '../redux/actions/userActions'
-
+import {isLogin} from '../utils/misc';
 import Contact from '../components/contact/Contact'
 import AccountInformation from '../components/innerpages/AccountInformation'
 import AiDoctor from '../components/innerpages/AiDoctor'
@@ -33,6 +33,7 @@ export const RoutesAndRouter = () => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
+        {isLogin() ?  <>
         <Route exact path="/edit-profile" component={EditProfile} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/aidoctor" component={AiDoctor}/>
@@ -41,6 +42,9 @@ export const RoutesAndRouter = () => {
         <Route exact path="/account" component={AccountInformation} />
         <Route exact path="/education" component={Education} />
         <Route exact path="/analytics" component={Analytics} />
+        </>:
+        <Redirect to="/" />
+        }
       </Switch>
     </Router>
   )
