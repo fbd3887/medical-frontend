@@ -32,7 +32,6 @@ export default function Analytics(props) {
   ])
 
   useEffect(() => {
-    console.log(props)
     if (window.localStorage.getItem('user-token')) {
 
     } else {

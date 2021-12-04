@@ -38,3 +38,9 @@
    }
    return days
  }
+
+ export const isLogin=()=>{
+   if(window.localStorage.getItem('user-token')!== null){
+     return true;
+   }else return false;
+ }

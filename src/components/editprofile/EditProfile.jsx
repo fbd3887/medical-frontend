@@ -92,6 +92,9 @@ export default function EditProfile() {
   useEffect(() => {
     if(Object.keys(user).length !== 0){
       let dob = user.dob.split("-")
+    if(user.occupation!=='Government Service' && user.occupation!=='Business Man'){
+      setOtherOccupation(true)
+    }
       const userData = {
         phoneNumber:user.phone_num,
         occupation:user.occupation,

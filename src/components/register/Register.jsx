@@ -82,7 +82,7 @@ export default function Register() {
         "occupation": occupation,
         "dob": `${dobYear}-${dobMonth}-${dobDay}`,
         "education": education,
-        'id_number':idNumber,
+        'id_number':Number(idNumber),
         "menstrual_cycle": Number(menstrualCycle),
         "bleed_cycle": Number(bleedCycle),
         "cramp_cycle": Number(crampCycle),
@@ -496,7 +496,7 @@ export default function Register() {
                     <h5>Do you experience cramps or pain during your period</h5>
                     <div className='d-flex flex-wrap'>
                       <label className='con3'>
-                        <span>{CRAMPS[0]}]</span>
+                        <span>{CRAMPS[0]}</span>
                         <input
                           type='radio'
                           name='crampCycle'

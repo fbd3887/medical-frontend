@@ -206,9 +206,10 @@
                 padding-left: 5%;
                 label{
                     width: 90%;
+                    color: #d3755f;
                     .forgetLogin{
                         float: right;
-                        color: #707070;
+                        color: #d3755f;
                     }
                 }
                
@@ -244,6 +245,7 @@
 
     .login-contaner {
         min-height: auto !important;
+        margin-bottom: 32px;
     }
 }
 
