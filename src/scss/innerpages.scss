@@ -1,310 +1,267 @@
-
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family:NotoSansTC-Medium;
-}
-
-.desktopHide{
+    font-family: NotoSansTC-Medium;
+  }
+  
+  .desktopHide {
     display: none;
-}
-.mobileHide{
+  }
+  .mobileHide {
     display: block;
-}
-.sidebar{
+  }
+  .sidebar {
     background: #e6917d;
     position: relative;
-    .leftmenulogo{
-        margin: 10% 0 25%;
+    .leftmenulogo {
+      margin: 10% 0 25%;
     }
-    .desktopst{
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        // padding-top: 10% ;
-        
-        .desktoprel{
-            position: relative;
-            height: 100vh !important;
-        }
-    }
-    .leftmenuitem{
-        padding: 8% 10%;
-        a{
-            text-decoration: none;
-        }
-        p{
-            margin: 0;
-            color: #fff;
-            cursor: pointer;
-        }
-    }
-    .logoutdiv{
-        position:absolute;;
-        bottom: 10%;
-        padding: 8% 10%;
-        a{
-            text-decoration: none;
-        }
-        p{
-            margin: 0;
-            color: #fff;
-            cursor: pointer;
-        }
-    }
-}
-
-::-webkit-input-placeholder { 
-        color:#E0E0E0;
+    .desktopst {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+  
+      .desktoprel {
+        position: relative;
+        height: 100vh !important;
       }
-.innerpageright{
+    }
+    .leftmenuitem {
+      padding: 8% 10%;
+      a {
+        text-decoration: none;
+      }
+      p {
+        margin: 0;
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+    .logoutdiv {
+      position: absolute;
+      bottom: 10%;
+      padding: 8% 10%;
+      a {
+        text-decoration: none;
+      }
+      p {
+        margin: 0;
+        color: #fff;
+      }
+    }
+  }
+  
+  ::-webkit-input-placeholder {
+    color: #e0e0e0;
+  }
+  .innerpageright {
     // .bullet
     // {
     //     color:#E8927C;
     //     width: 12px;
     //     height: 20px;
     // }
-    .age
-    {
-        height:60px;
-        width:20px;
-        margin-top:190px;
+    .age {
+      height: 60px;
+      width: 20px;
+      margin-top: 190px;
     }
-    
-    .mobilechar{
-        width:50%;
-        height:40%;
+  
+    .mobilechar {
+      width: 50%;
+      height: 40%;
     }
-    .style-box{
-        
-        padding-left: 10px;
-        padding-right:10px; 
-        padding-bottom: 3px;
-        padding-top:3px;
-        border: 1px solid #E0E0E0;
-        font-size: 16px;
-        
+    .style-box {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 3px;
+      padding-top: 3px;
+      border: 1px solid #e0e0e0;
+      font-size: 16px;
     }
-    
-    .editbutton{
-        width:160px;
-        color:#E6917D;
-        border-width: thin;
-        padding: 3px 12px 3px 12px;
-        border-radius: 25px;
-        border-style: solid;
-        border-color: #E6917D;
+  
+    .editbutton {
+      width: 160px;
+      color: #e6917d;
+      border-width: thin;
+      padding: 3px 12px 3px 12px;
+      border-radius: 25px;
+      border-style: solid;
+      border-color: #e6917d;
     }
-    .bookbutton{
-      
-        color:#E6917D;
-        border-width: thin;
-        padding: 5px 12px 5px 12px;
-        border-radius: 25px;
-        border-style: solid;
-        border-color: #E6917D;
-        width: fit-content;
+    .bookbutton {
+      color: #e6917d;
+      border-width: thin;
+      padding: 5px 12px 5px 12px;
+      border-radius: 25px;
+      border-style: solid;
+      border-color: #e6917d;
+      width: fit-content;
     }
-    .color-orange
-    {
-        color:#E6917D;
+    .color-orange {
+      color: #e6917d;
     }
-         
-    padding-top:4%;
+  
+    padding-top: 4%;
     background-color: #fffaf8;
-    .formarea
-    {
+    .formarea {
+      display: flex;
+      // justify-content: space-around;
+    }
+  
+    .aiFormCard {
+      height: 250px;
+    }
+    .aiFormImg {
+      .custom-ai-img {
+        min-height: 300px;
+        min-width: 300px;
+        width: 80%;
+        height: 80%;
+        background-size: cover;
+        margin: auto;
+      }
+    }
+    .addBtn {
+      color: #e6917d;
+      cursor: pointer;
+    }
+    .formOptionCard {
+      background: #fff;
+      border-radius: 10px;
+      color: #5c5c5c;
+      box-shadow: 0 0 10px #8e8e8e;
+      .colorpill {
+        background: #f9f2ef;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+      .leftlabel {
+        width: 30%;
+        float: left;
+      }
+      .rightdata {
+        width: 65%;
+        float: left;
+      }
+      ul {
+        list-style: none;
+        padding: 0px;
+        li {
+          padding: 5px;
+        }
+      }
+    }
+  }
+  
+  .menu-items {
+    display: block;
+  }
+  .mobilemenudiv {
+    display: none;
+  }
+  @media only screen and (min-width: 992px) {
+    .innerpageright {
+      .addBtn {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        z-index: 1;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .menuItems {
+      display: none;
+    }
+    .mobilemenudiv {
+        cursor: pointer;
+      display: block;
+    }
+    .desktoprel {
+      .navLogoContainer {
         display: flex;
-        // justify-content: space-around;
-    
-    }
-    
-    .aiFormCard
-       {
-           height:250px;
-       }
-    .aiFormImg{
-       
-        .custom-ai-img {
-            min-height: 300px;
-            min-width: 300px;
-            width: 80%;
-            height: 80%;
-            background-size: cover;
-            margin: auto;
-        }
-    }
-    .addBtn{
-        color:#E6917D;
-        cursor:pointer;
-    }
-    .formOptionCard{
-        background: #fff;
-        border-radius: 10px;
-        color: #5C5C5C;
-        box-shadow: 0 0 10px #8E8E8E;
-        .colorpill{
-            background: #f9f2ef;
-            padding: 10px 20px;
-            border-radius: 50px;
-        }
-        .leftlabel{
-            width: 30%;
-            float: left;
-        }
-        .rightdata{
-            width: 65%;
-            float: left;
-        }
-        ul{
-            list-style: none;
-            padding:0px;
-            li{
-                padding:5px; 
-            }
-        }
-    }
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 765px) {
-    .shift_end{
-        display: flex;
-        justify-content: end;
-    }
-    .marginendsmall{
-        margin-right: 12px;
-    }
-    .btntopmargin{
-        margin-top:20px;
-    }
-    .discountimg
-    {
-        width: 100%;
-    }
-    .pad-top{
-        padding-top: 18px;
-        font-size: 16px;
-    }
-    .pad-bottom{
-        padding-bottom: 11px;
-    }
-    .display_none{
-        display:none;
-    }
-    .margin_top{
-        margin-top: 14px;
-    }
-    .desktopHide{
-        display: block;
-    }
-    .mobileHide{
-        display: none;
-    }
-    .input{
-        padding: 30px;
-    }
-    .innerpageright
-    {   
-        .mobileform{
-            display: flex;
-            flex-direction: column;
-            width: fit-content;
-            padding:30px;
-        }
-        .mobileouterform
-        {
-            display: flex;
-            // flex-direction: row;
-        }
-        .heading
-        {
-            margin:auto;
-            width: fit-content;
-        }
-        .headspan
-        {
-            margin-left: -15px;
-        }
-        .aiFormCard{
-           height:auto;
-           min-height: fit-content;           
-        }
-        .addBtn{
-            color:#E6917D;
-            display:flex;
-            justify-content: center;
-            padding:15px;
-        }
-        
-    }
-    .sidebar{
-        height: auto !important;
-        .mobilemenudiv{
-            float: right;
-        }
-    
-    }
-}
-@media only screen and (min-width: 992px) {
-    .innerpageright{
-        .addBtn{
-           position:absolute;
-           top:30px;
-           right: 30px;
-            z-index:1;
-        }
-    }
-}
-@media only screen and (min-width: 768px) {
-    .marginendlg{
-        margin-right:25px;
-    }
-    .divalign{
+        justify-content: space-between;
         align-items: center;
+        .leftmenulogo {
+          img {
+            width: 50px;
+          }
+        }
+      }
     }
-    .discountimg
-    {
-        width: 100%;
+    .showMobileMenu {
+      display: block;
+      text-align: center;
     }
-    .innerpageright{
-        .padding-left-5{
-            padding-left: 5px;
+    .sidebar {
+      .leftmenulogo {
+        margin: 15px;
+      }
+      .desktopst {
+        height: unset;
+        .desktoprel {
+          height: unset !important;
         }
-        .padding-left-10{
-            padding-left: 13px;
-        }
-        .padding-left-20{
-            padding-left:30px;
-        }
-        .labelmobileform{
-            width: 92%;
-            display: flex;
-            justify-content: space-evenly;
-            background-color: #e6917d;
-            background: #e6917d;
-            border-radius: 20px;
-            color: #fff;
-            box-shadow: 0 0 10px #8E8E8E;
-        }
-        .inputmobileform{
-            width: 88%;
-            display: flex;
-            justify-content: space-evenly;
-            
-            input
-            {
-                width:70%;
-                margin-top: 15px;;
-            }
-            
-        }
-        
-        
-        .addBtn{
-           position:absolute;
-            top:30px;
-            right: 30px;
-            z-index:1;
-        }
+      }
     }
-}
+    .leftmenuitem {
+      padding: 10px !important;
+    }
+    .logoutdiv {
+      position: relative !important;
+      padding: 15px !important;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    .marginendlg {
+      margin-right: 25px;
+    }
+    .divalign {
+      align-items: center;
+    }
+    .discountimg {
+      width: 100%;
+    }
+    .innerpageright {
+      .padding-left-5 {
+        padding-left: 5px;
+      }
+      .padding-left-10 {
+        padding-left: 13px;
+      }
+      .padding-left-20 {
+        padding-left: 30px;
+      }
+      .labelmobileform {
+        width: 92%;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: #e6917d;
+        background: #e6917d;
+        border-radius: 20px;
+        color: #fff;
+        box-shadow: 0 0 10px #8e8e8e;
+      }
+      .inputmobileform {
+        width: 88%;
+        display: flex;
+        justify-content: space-evenly;
+  
+        input {
+          width: 70%;
+          margin-top: 15px;
+        }
+      }
+  
+      .addBtn {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        z-index: 1;
+      }
+    }
+  }
+  
